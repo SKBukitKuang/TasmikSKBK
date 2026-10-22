@@ -86,56 +86,74 @@
                     </span>
                     <h2 class="text-3xl sm:text-4xl font-black tracking-tight">Analisis Pencapaian Tasmik Semasa</h2>
                     <p class="text-slate-300 text-sm sm:text-base">
-                        Rumusan peratusan dan taburan tahap penguasaan murid merangkumi Iqra' (1-6), Juzuk (1-30), serta status Khatam Al-Quran secara menyeluruh.
+                        Rumusan utama merangkumi taburan keseluruhan Iqra', Juzuk, dan Khatam Al-Quran. Tekan butang 'Lihat Pecahan' untuk paparan terperinci.
                     </p>
                 </div>
-                <div class="relative z-10 mt-6 grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-white/10">
-                    <div class="bg-white/10 backdrop-blur-md p-3.5 rounded-2xl border border-white/10 shadow-sm">
-                        <span class="text-xs text-slate-300 font-medium">Jumlah Murid</span>
-                        <h3 id="stat-total-students" class="text-2xl font-extrabold text-emerald-300">0</h3>
+            </div>
+
+            <!-- 3 Main Analytics Circles Container -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Circle 1: Iqra -->
+                <div class="bg-white rounded-3xl p-6 shadow-md border border-slate-100 flex flex-col items-center text-center justify-between">
+                    <div>
+                        <div class="w-24 h-24 rounded-full bg-amber-500 text-white font-black flex flex-col items-center justify-center text-2xl shadow-lg mx-auto mb-4 border-4 border-amber-100">
+                            <span id="stat-main-iqra">0</span>
+                            <span class="text-[10px] font-normal opacity-90">Murid</span>
+                        </div>
+                        <h3 class="font-bold text-slate-800 text-lg">Kumpulan Iqra' (1 - 6)</h3>
+                        <p class="text-xs text-slate-500 mt-1">Murid yang sedang menguasai asas pembacaan Iqra'.</p>
                     </div>
-                    <div class="bg-white/10 backdrop-blur-md p-3.5 rounded-2xl border border-white/10 shadow-sm">
-                        <span class="text-xs text-slate-300 font-medium">Mengaji Iqra'</span>
-                        <h3 id="stat-total-iqra" class="text-2xl font-extrabold text-amber-300">0</h3>
+                    <button onclick="toggleDrilldown('iqra')" class="mt-6 w-full py-2 bg-amber-50 hover:bg-amber-100 text-amber-700 text-xs font-bold rounded-xl transition border border-amber-200 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-circle-chevron-down" id="icon-drill-iqra"></i>
+                        <span>Lihat Pecahan Terperinci</span>
+                    </button>
+                </div>
+
+                <!-- Circle 2: Juzuk -->
+                <div class="bg-white rounded-3xl p-6 shadow-md border border-slate-100 flex flex-col items-center text-center justify-between">
+                    <div>
+                        <div class="w-24 h-24 rounded-full bg-cyan-600 text-white font-black flex flex-col items-center justify-center text-2xl shadow-lg mx-auto mb-4 border-4 border-cyan-100">
+                            <span id="stat-main-juzuk">0</span>
+                            <span class="text-[10px] font-normal opacity-90">Murid</span>
+                        </div>
+                        <h3 class="font-bold text-slate-800 text-lg">Kumpulan Juzuk (1 - 30)</h3>
+                        <p class="text-xs text-slate-500 mt-1">Murid yang membaca Al-Quran bertadarus / bertasmik.</p>
                     </div>
-                    <div class="bg-white/10 backdrop-blur-md p-3.5 rounded-2xl border border-white/10 shadow-sm">
-                        <span class="text-xs text-slate-300 font-medium">Mengaji Juzuk</span>
-                        <h3 id="stat-total-juzuk" class="text-2xl font-extrabold text-cyan-300">0</h3>
+                    <button onclick="toggleDrilldown('juzuk')" class="mt-6 w-full py-2 bg-cyan-50 hover:bg-cyan-100 text-cyan-700 text-xs font-bold rounded-xl transition border border-cyan-200 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-circle-chevron-down" id="icon-drill-juzuk"></i>
+                        <span>Lihat Pecahan Terperinci</span>
+                    </button>
+                </div>
+
+                <!-- Circle 3: Khatam -->
+                <div class="bg-white rounded-3xl p-6 shadow-md border border-slate-100 flex flex-col items-center text-center justify-between">
+                    <div>
+                        <div class="w-24 h-24 rounded-full bg-pink-600 text-white font-black flex flex-col items-center justify-center text-2xl shadow-lg mx-auto mb-4 border-4 border-pink-100">
+                            <span id="stat-main-khatam">0</span>
+                            <span class="text-[10px] font-normal opacity-90">Murid</span>
+                        </div>
+                        <h3 class="font-bold text-slate-800 text-lg">Khatam Al-Quran</h3>
+                        <p class="text-xs text-slate-500 mt-1">Murid yang telah menamatkan bacaan 30 Juzuk.</p>
                     </div>
-                    <div class="bg-white/10 backdrop-blur-md p-3.5 rounded-2xl border border-white/10 shadow-sm">
-                        <span class="text-xs text-slate-300 font-medium">Khatam Al-Quran</span>
-                        <h3 id="stat-total-khatam" class="text-2xl font-extrabold text-pink-300">0</h3>
+                    <div class="mt-6 py-2 text-xs font-bold text-pink-600 bg-pink-50 w-full rounded-xl border border-pink-100">
+                        Status Pencapaian Penuh
                     </div>
                 </div>
             </div>
 
-            <!-- Analytics Circular Grid -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <!-- Iqra Breakdown -->
-                <div class="bg-white rounded-3xl p-6 shadow-md border border-slate-100 flex flex-col">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="font-bold text-slate-800 flex items-center gap-2 text-sm sm:text-base">
-                            <span class="w-8 h-8 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-sm font-bold"><i class="fa-solid fa-book-tanakh"></i></span>
-                            Taburan Tahap Iqra' (1 - 6)
-                        </h3>
-                    </div>
-                    <div id="iqra-circles-container" class="grid grid-cols-2 sm:grid-cols-3 gap-4 my-auto">
-                        <!-- Dynamically populated -->
-                    </div>
-                </div>
+            <!-- Drilldown Containers (Hidden by default, shown on click) -->
+            <div id="drilldown-iqra-container" class="hidden bg-white rounded-3xl p-6 shadow-md border border-amber-200 space-y-4">
+                <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+                    <i class="fa-solid fa-chart-bar text-amber-600"></i> Pecahan Mengikut Tahap Iqra' (1 - 6)
+                </h4>
+                <div id="iqra-drill-grid" class="grid grid-cols-2 sm:grid-cols-6 gap-3"></div>
+            </div>
 
-                <!-- Juzuk Breakdown & Khatam -->
-                <div class="bg-white rounded-3xl p-6 shadow-md border border-slate-100 flex flex-col lg:col-span-2">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="font-bold text-slate-800 flex items-center gap-2 text-sm sm:text-base">
-                            <span class="w-8 h-8 rounded-xl bg-cyan-100 text-cyan-600 flex items-center justify-center text-sm font-bold"><i class="fa-solid fa-bookmark"></i></span>
-                            Taburan Tahap Juzuk (1 - 30) & Khatam Al-Quran
-                        </h3>
-                    </div>
-                    <div id="juzuk-circles-container" class="grid grid-cols-3 sm:grid-cols-6 gap-3 max-h-[380px] overflow-y-auto p-1">
-                        <!-- Dynamically populated -->
-                    </div>
-                </div>
+            <div id="drilldown-juzuk-container" class="hidden bg-white rounded-3xl p-6 shadow-md border border-cyan-200 space-y-4">
+                <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+                    <i class="fa-solid fa-chart-bar text-cyan-600"></i> Pecahan Mengikut Tahap Juzuk (1 - 30)
+                </h4>
+                <div id="juzuk-drill-grid" class="grid grid-cols-3 sm:grid-cols-6 gap-3 max-h-[350px] overflow-y-auto p-1"></div>
             </div>
         </section>
 
@@ -170,7 +188,7 @@
                     </div>
                 </div>
 
-                <!-- Input Mode Switcher (Single / Bulk) -->
+                <!-- Input Mode Switcher -->
                 <div class="flex gap-2 mb-4 bg-slate-100 p-1.5 rounded-2xl w-fit">
                     <button type="button" onclick="switchInputMode('single')" id="mode-single-btn" class="px-4 py-2 rounded-xl text-xs font-bold transition bg-white text-emerald-800 shadow-sm">
                         <i class="fa-solid fa-user-plus mr-1"></i> Input Seorangan (Single)
@@ -290,7 +308,7 @@
                 <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mb-6">
                     <div>
                         <h2 class="text-xl font-bold text-slate-800">Rekod Tasmik Mingguan Mengikut Bulan & Kelas</h2>
-                        <p class="text-sm text-slate-500">Pilih Bulan dan Kelas untuk mengemaskini rekod mingguan, bacaan semasa, sasaran dan catatan murid.</p>
+                        <p class="text-sm text-slate-500">Pilih Bulan (Diisih mengikut bulan) dan Kelas untuk mengemaskini rekod mingguan, bacaan semasa, sasaran dan catatan murid.</p>
                     </div>
                     <!-- Pilih Bulan & Kelas -->
                     <div class="flex flex-wrap gap-2 w-full lg:w-auto">
@@ -327,16 +345,16 @@
 
                 <!-- Rekod Tasmik Table -->
                 <div class="overflow-x-auto rounded-2xl border border-slate-200">
-                    <table class="w-full text-left border-collapse min-w-[1250px]">
+                    <table class="w-full text-left border-collapse min-w-[1350px]">
                         <thead>
                             <tr class="bg-slate-100 text-slate-700 text-xs font-bold uppercase tracking-wider">
                                 <th class="p-3 text-center w-12">BIL</th>
                                 <th class="p-3 w-44">NAMA</th>
                                 <th class="p-3 w-48">REKOD LEPAS</th>
-                                <th class="p-3 w-24 text-center">MINGGU 1</th>
-                                <th class="p-3 w-24 text-center">MINGGU 2</th>
-                                <th class="p-3 w-24 text-center">MINGGU 3</th>
-                                <th class="p-3 w-24 text-center">MINGGU 4</th>
+                                <th class="p-3 w-28 text-center">MINGGU 1</th>
+                                <th class="p-3 w-28 text-center">MINGGU 2</th>
+                                <th class="p-3 w-28 text-center">MINGGU 3</th>
+                                <th class="p-3 w-28 text-center">MINGGU 4</th>
                                 <th class="p-3 w-56">REKOD BACAAN SEMASA</th>
                                 <th class="p-3 w-48">SASARAN MURID</th>
                                 <th class="p-3 w-36">CATATAN</th>
@@ -421,6 +439,27 @@
 
     </main>
 
+    <!-- Modal for Selecting Pages from Current Juzuk -->
+    <div id="page-picker-modal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-3xl p-6 max-w-lg w-full mx-4 shadow-2xl border border-slate-100 transform scale-95 transition-transform duration-300">
+            <div class="flex justify-between items-center mb-4 pb-2 border-b border-slate-100">
+                <h3 class="font-bold text-slate-800 text-base" id="picker-modal-title">Pilih Muka Surat Minggu</h3>
+                <button onclick="closePagePicker()" class="text-slate-400 hover:text-slate-600 text-sm font-bold px-2 py-1">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <p class="text-xs text-slate-500 mb-3">Klik pada nombor muka surat di bawah untuk menambah atau memadam pilihan bagi minggu ini:</p>
+            <div id="picker-pages-grid" class="grid grid-cols-6 sm:grid-cols-8 gap-2 max-h-[250px] overflow-y-auto p-2 bg-slate-50 rounded-2xl border border-slate-200">
+                <!-- Dynamically generated pages -->
+            </div>
+            <div class="mt-4 flex justify-end">
+                <button onclick="closePagePicker()" class="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs rounded-xl shadow transition">
+                    Selesai
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Custom Notification Box -->
     <div id="notification-modal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
         <div class="bg-white rounded-3xl p-6 max-w-sm w-full mx-4 shadow-2xl border border-slate-100 transform scale-95 transition-transform duration-300" id="notification-box-content">
@@ -444,17 +483,16 @@
 
     <!-- JavaScript Logic -->
     <script>
-        // Data Store Initialization
         let students = JSON.parse(localStorage.getItem('tasmik_students_v2')) || [];
         let monthlyRecords = JSON.parse(localStorage.getItem('tasmik_monthly_records_v2')) || {};
 
         const sampleStudents = [
-            { id: 101, name: "Muhammad Adam bin Zulkifli", year: "Tahun 3", className: "Daisy", pastRecord: "1IQ3", pastMs: "15" },
-            { id: 102, name: "Nur Aina Mardhiah binti Azman", year: "Tahun 3", className: "Daisy", pastRecord: "JUZUL 1", pastMs: "1-21" },
-            { id: 103, name: "Ahmad Ziqri bin Hairul", year: "Tahun 3", className: "Daisy", pastRecord: "1IQ1", pastMs: "5" }
+            { id: 101, name: "Muhammad Adam bin Zulkifli", year: "Tahun 3", className: "Daisy" },
+            { id: 102, name: "Nur Aina Mardhiah binti Azman", year: "Tahun 3", className: "Daisy" },
+            { id: 103, name: "Ahmad Ziqri bin Hairul", year: "Tahun 3", className: "Daisy" }
         ];
 
-        // Official Al-Quran Page Ranges mapping
+        // Juzuk ranges without page number tag strings
         const juzukPageRanges = {
             "1IQ1": { type: "iqra", label: "Iqra' 1", min: 1, max: 30 },
             "1IQ2": { type: "iqra", label: "Iqra' 2", min: 1, max: 32 },
@@ -462,37 +500,37 @@
             "1IQ4": { type: "iqra", label: "Iqra' 4", min: 1, max: 32 },
             "1IQ5": { type: "iqra", label: "Iqra' 5", min: 1, max: 54 },
             "1IQ6": { type: "iqra", label: "Iqra' 6", min: 1, max: 32 },
-            "JUZUK 1": { type: "juzuk", start: 1, end: 21, label: "Juzuk 1 (ms 1-21)" },
-            "JUZUK 2": { type: "juzuk", start: 22, end: 41, label: "Juzuk 2 (ms 22-41)" },
-            "JUZUK 3": { type: "juzuk", start: 42, end: 61, label: "Juzuk 3 (ms 42-61)" },
-            "JUZUK 4": { type: "juzuk", start: 62, end: 81, label: "Juzuk 4 (ms 62-81)" },
-            "JUZUK 5": { type: "juzuk", start: 82, end: 101, label: "Juzuk 5 (ms 82-101)" },
-            "JUZUK 6": { type: "juzuk", start: 102, end: 121, label: "Juzuk 6 (ms 102-121)" },
-            "JUZUK 7": { type: "juzuk", start: 122, end: 141, label: "Juzuk 7 (ms 122-141)" },
-            "JUZUK 8": { type: "juzuk", start: 142, end: 161, label: "Juzuk 8 (ms 142-161)" },
-            "JUZUK 9": { type: "juzuk", start: 162, end: 181, label: "Juzuk 9 (ms 162-181)" },
-            "JUZUK 10": { type: "juzuk", start: 182, end: 201, label: "Juzuk 10 (ms 182-201)" },
-            "JUZUK 11": { type: "juzuk", start: 202, end: 221, label: "Juzuk 11 (ms 202-221)" },
-            "JUZUK 12": { type: "juzuk", start: 222, end: 241, label: "Juzuk 12 (ms 222-241)" },
-            "JUZUK 13": { type: "juzuk", start: 242, end: 261, label: "Juzuk 13 (ms 242-261)" },
-            "JUZUK 14": { type: "juzuk", start: 262, end: 281, label: "Juzuk 14 (ms 262-281)" },
-            "JUZUK 15": { type: "juzuk", start: 282, end: 301, label: "Juzuk 15 (ms 282-301)" },
-            "JUZUK 16": { type: "juzuk", start: 302, end: 321, label: "Juzuk 16 (ms 302-321)" },
-            "JUZUK 17": { type: "juzuk", start: 322, end: 341, label: "Juzuk 17 (ms 322-341)" },
-            "JUZUK 18": { type: "juzuk", start: 342, end: 361, label: "Juzuk 18 (ms 342-361)" },
-            "JUZUK 19": { type: "juzuk", start: 362, end: 381, label: "Juzuk 19 (ms 362-381)" },
-            "JUZUK 20": { type: "juzuk", start: 382, end: 401, label: "Juzuk 20 (ms 382-401)" },
-            "JUZUK 21": { type: "juzuk", start: 402, end: 421, label: "Juzuk 21 (ms 402-421)" },
-            "JUZUK 22": { type: "juzuk", start: 422, end: 441, label: "Juzuk 22 (ms 422-441)" },
-            "JUZUK 23": { type: "juzuk", start: 442, end: 461, label: "Juzuk 23 (ms 442-461)" },
-            "JUZUK 24": { type: "juzuk", start: 462, end: 481, label: "Juzuk 24 (ms 462-481)" },
-            "JUZUK 25": { type: "juzuk", start: 482, end: 501, label: "Juzuk 25 (ms 482-501)" },
-            "JUZUK 26": { type: "juzuk", start: 502, end: 521, label: "Juzuk 26 (ms 502-521)" },
-            "JUZUK 27": { type: "juzuk", start: 522, end: 541, label: "Juzuk 27 (ms 522-541)" },
-            "JUZUK 28": { type: "juzuk", start: 542, end: 561, label: "Juzuk 28 (ms 542-561)" },
-            "JUZUK 29": { type: "juzuk", start: 562, end: 581, label: "Juzuk 29 (ms 562-581)" },
-            "JUZUK 30": { type: "juzuk", start: 582, end: 604, label: "Juzuk 30 (ms 582-604)" },
-            "KHATAM": { type: "khatam", start: 604, end: 604, label: "Khatam Al-Quran (ms 604)" }
+            "JUZUK 1": { type: "juzuk", start: 1, end: 21, label: "Juzuk 1" },
+            "JUZUK 2": { type: "juzuk", start: 22, end: 41, label: "Juzuk 2" },
+            "JUZUK 3": { type: "juzuk", start: 42, end: 61, label: "Juzuk 3" },
+            "JUZUK 4": { type: "juzuk", start: 62, end: 81, label: "Juzuk 4" },
+            "JUZUK 5": { type: "juzuk", start: 82, end: 101, label: "Juzuk 5" },
+            "JUZUK 6": { type: "juzuk", start: 102, end: 121, label: "Juzuk 6" },
+            "JUZUK 7": { type: "juzuk", start: 122, end: 141, label: "Juzuk 7" },
+            "JUZUK 8": { type: "juzuk", start: 142, end: 161, label: "Juzuk 8" },
+            "JUZUK 9": { type: "juzuk", start: 162, end: 181, label: "Juzuk 9" },
+            "JUZUK 10": { type: "juzuk", start: 182, end: 201, label: "Juzuk 10" },
+            "JUZUK 11": { type: "juzuk", start: 202, end: 221, label: "Juzuk 11" },
+            "JUZUK 12": { type: "juzuk", start: 222, end: 241, label: "Juzuk 12" },
+            "JUZUK 13": { type: "juzuk", start: 242, end: 261, label: "Juzuk 13" },
+            "JUZUK 14": { type: "juzuk", start: 262, end: 281, label: "Juzuk 14" },
+            "JUZUK 15": { type: "juzuk", start: 282, end: 301, label: "Juzuk 15" },
+            "JUZUK 16": { type: "juzuk", start: 302, end: 321, label: "Juzuk 16" },
+            "JUZUK 17": { type: "juzuk", start: 322, end: 341, label: "Juzuk 17" },
+            "JUZUK 18": { type: "juzuk", start: 342, end: 361, label: "Juzuk 18" },
+            "JUZUK 19": { type: "juzuk", start: 362, end: 381, label: "Juzuk 19" },
+            "JUZUK 20": { type: "juzuk", start: 382, end: 401, label: "Juzuk 20" },
+            "JUZUK 21": { type: "juzuk", start: 402, end: 421, label: "Juzuk 21" },
+            "JUZUK 22": { type: "juzuk", start: 422, end: 441, label: "Juzuk 22" },
+            "JUZUK 23": { type: "juzuk", start: 442, end: 461, label: "Juzuk 23" },
+            "JUZUK 24": { type: "juzuk", start: 462, end: 481, label: "Juzuk 24" },
+            "JUZUK 25": { type: "juzuk", start: 482, end: 501, label: "Juzuk 25" },
+            "JUZUK 26": { type: "juzuk", start: 502, end: 521, label: "Juzuk 26" },
+            "JUZUK 27": { type: "juzuk", start: 522, end: 541, label: "Juzuk 27" },
+            "JUZUK 28": { type: "juzuk", start: 542, end: 561, label: "Juzuk 28" },
+            "JUZUK 29": { type: "juzuk", start: 562, end: 581, label: "Juzuk 29" },
+            "JUZUK 30": { type: "juzuk", start: 582, end: 604, label: "Juzuk 30" },
+            "KHATAM": { type: "khatam", start: 604, end: 604, label: "Khatam Al-Quran" }
         };
 
         const availableLevels = Object.keys(juzukPageRanges);
@@ -506,7 +544,7 @@
             return html;
         }
 
-        // Tab Switching Logic
+        // Tab Switching
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
             document.getElementById('tab-' + tabId).classList.remove('hidden');
@@ -514,8 +552,7 @@
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.className = "tab-btn px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-200 flex items-center space-x-2 text-white hover:bg-white/20";
             });
-            const activeBtn = document.getElementById('nav-' + tabId);
-            activeBtn.className = "tab-btn px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-200 flex items-center space-x-2 bg-white text-emerald-900 shadow-md";
+            document.getElementById('nav-' + tabId).className = "tab-btn px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-200 flex items-center space-x-2 bg-white text-emerald-900 shadow-md";
 
             if (tabId === 'analytics') renderAnalytics();
             if (tabId === 'students') renderStudentsTable();
@@ -523,7 +560,6 @@
             if (tabId === 'matrix') loadMatrixTable();
         }
 
-        // Notification Modal
         function showNotification(title, message, isSuccess = true) {
             const modal = document.getElementById('notification-modal');
             const box = document.getElementById('notification-box-content');
@@ -552,24 +588,13 @@
             setTimeout(() => { modal.classList.add('hidden'); }, 300);
         }
 
-        // ---------------- TAB 1: ANALYTICS ----------------
+        // ---------------- TAB 1: ANALYTICS 3 MAIN CIRCLES + DRILLDOWN ----------------
         function renderAnalytics() {
             const total = students.length;
-            if (total === 0) {
-                document.getElementById('stat-total-students').innerText = 0;
-                document.getElementById('stat-total-iqra').innerText = 0;
-                document.getElementById('stat-total-juzuk').innerText = 0;
-                document.getElementById('stat-total-khatam').innerText = 0;
-                document.getElementById('iqra-circles-container').innerHTML = '<p class="col-span-full text-center text-xs text-slate-400 py-4">Tiada data murid.</p>';
-                document.getElementById('juzuk-circles-container').innerHTML = '<p class="col-span-full text-center text-xs text-slate-400 py-4">Tiada data murid.</p>';
-                return;
-            }
-
             let countIqra = 0, countJuzuk = 0, countKhatam = 0;
             const iqraCounts = { "1IQ1":0, "1IQ2":0, "1IQ3":0, "1IQ4":0, "1IQ5":0, "1IQ6":0 };
             const juzukCounts = {};
             for(let i=1; i<=30; i++) juzukCounts[`JUZUK ${i}`] = 0;
-            let khatamCount = 0;
 
             students.forEach(s => {
                 const curr = getLatestStudentLevel(s.id).toUpperCase();
@@ -581,65 +606,54 @@
                     if(juzukCounts[curr] !== undefined) juzukCounts[curr]++;
                 } else if(curr.includes("KHATAM")) {
                     countKhatam++;
-                    khatamCount++;
                 } else {
                     countIqra++;
                     iqraCounts["1IQ1"]++;
                 }
             });
 
-            document.getElementById('stat-total-students').innerText = total;
-            document.getElementById('stat-total-iqra').innerText = countIqra;
-            document.getElementById('stat-total-juzuk').innerText = countJuzuk;
-            document.getElementById('stat-total-khatam').innerText = countKhatam;
+            document.getElementById('stat-main-iqra').innerText = countIqra;
+            document.getElementById('stat-main-juzuk').innerText = countJuzuk;
+            document.getElementById('stat-main-khatam').innerText = countKhatam;
 
-            const iqraContainer = document.getElementById('iqra-circles-container');
-            iqraContainer.innerHTML = '';
-            const iqraColors = ['bg-amber-500', 'bg-orange-500', 'bg-yellow-500', 'bg-amber-600', 'bg-yellow-600', 'bg-amber-700'];
-            let idx = 0;
+            // Populate Drilldown Iqra grid
+            const iqraGrid = document.getElementById('iqra-drill-grid');
+            iqraGrid.innerHTML = '';
             for(let key in iqraCounts) {
                 const val = iqraCounts[key];
-                const pct = ((val / total) * 100).toFixed(1);
-                const color = iqraColors[idx % iqraColors.length];
-                iqraContainer.innerHTML += `
-                    <div class="bg-slate-50 border border-slate-200 rounded-2xl p-3 flex flex-col items-center justify-center text-center shadow-sm">
-                        <div class="w-14 h-14 rounded-full ${color} text-white font-black flex flex-col items-center justify-center text-xs shadow-md mb-2">
-                            <span>${val}</span>
-                            <span class="text-[9px] font-normal opacity-90">${pct}%</span>
-                        </div>
-                        <span class="text-xs font-bold text-slate-700">${key.replace('1', 'Iqra\' ')}</span>
+                iqraGrid.innerHTML += `
+                    <div class="bg-amber-50 border border-amber-200 rounded-2xl p-3 flex flex-col items-center justify-center text-center">
+                        <span class="text-xl font-extrabold text-amber-700">${val}</span>
+                        <span class="text-xs font-bold text-slate-700 mt-1">${key.replace('1', 'Iqra\' ')}</span>
                     </div>
                 `;
-                idx++;
             }
 
-            const juzukContainer = document.getElementById('juzuk-circles-container');
-            juzukContainer.innerHTML = '';
+            // Populate Drilldown Juzuk grid
+            const juzukGrid = document.getElementById('juzuk-drill-grid');
+            juzukGrid.innerHTML = '';
             for(let i=1; i<=30; i++) {
                 const key = `JUZUK ${i}`;
                 const val = juzukCounts[key];
-                const pct = ((val / total) * 100).toFixed(1);
-                juzukContainer.innerHTML += `
-                    <div class="bg-slate-50 border border-slate-200 rounded-2xl p-2.5 flex flex-col items-center justify-center text-center shadow-sm">
-                        <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-cyan-600 to-teal-500 text-white font-black flex flex-col items-center justify-center text-[11px] shadow-md mb-1">
-                            <span>${val}</span>
-                            <span class="text-[8px] font-normal opacity-90">${pct}%</span>
-                        </div>
-                        <span class="text-[11px] font-semibold text-slate-700">Jz ${i}</span>
+                juzukGrid.innerHTML += `
+                    <div class="bg-cyan-50 border border-cyan-200 rounded-2xl p-2.5 flex flex-col items-center justify-center text-center">
+                        <span class="text-lg font-extrabold text-cyan-700">${val}</span>
+                        <span class="text-[11px] font-bold text-slate-700">Jz ${i}</span>
                     </div>
                 `;
             }
+        }
 
-            const khatamPct = ((khatamCount / total) * 100).toFixed(1);
-            juzukContainer.innerHTML += `
-                <div class="bg-pink-50 border border-pink-200 rounded-2xl p-2.5 flex flex-col items-center justify-center text-center shadow-sm col-span-3 sm:col-span-6">
-                    <div class="w-14 h-14 rounded-full bg-gradient-to-tr from-pink-600 to-rose-500 text-white font-black flex flex-col items-center justify-center text-xs shadow-md mb-1">
-                        <span>${khatamCount}</span>
-                        <span class="text-[9px] font-normal opacity-90">${khatamPct}%</span>
-                    </div>
-                    <span class="text-xs font-bold text-pink-700 uppercase tracking-wide">Jumlah Khatam Al-Quran (${khatamPct}%)</span>
-                </div>
-            `;
+        function toggleDrilldown(type) {
+            const container = document.getElementById(`drilldown-${type}-container`);
+            const icon = document.getElementById(`icon-drill-${type}`);
+            if(container.classList.contains('hidden')) {
+                container.classList.remove('hidden');
+                icon.className = "fa-solid fa-circle-chevron-up";
+            } else {
+                container.classList.add('hidden');
+                icon.className = "fa-solid fa-circle-chevron-down";
+            }
         }
 
         function getLatestStudentLevel(studentId) {
@@ -788,10 +802,13 @@
 
         // ---------------- TAB 3: REKOD TASMIK BULANAN ----------------
         function loadClassRecords() {
-            const month = document.getElementById('select-month-records').value;
-            const className = document.getElementById('select-class-records').value;
+            const monthSelect = document.getElementById('select-month-records');
+            const classNameSelect = document.getElementById('select-class-records');
             const tbody = document.getElementById('records-table-body');
             tbody.innerHTML = '';
+
+            const month = monthSelect.value;
+            const className = classNameSelect.value;
 
             const classStudents = students.filter(s => s.className === className);
             const recordKey = `${month}_${className}`;
@@ -810,9 +827,9 @@
                         pastMs: s.pastMs || "1",
                         w1: "", w2: "", w3: "", w4: "",
                         current: s.pastRecord || "1IQ1",
-                        currentMs: s.currentMs || "1",
+                        currentMs: "1",
                         target: "JUZUK 1",
-                        targetMs: "1-21",
+                        targetMs: "1",
                         notes: "Sangat Lancar"
                     };
                 }
@@ -832,29 +849,29 @@
                         <td class="p-3 text-center font-semibold text-slate-600">${idx + 1}</td>
                         <td class="p-3 font-medium text-slate-800">${s.name}</td>
                         
-                        <!-- REKOD LEPAS (Kini Berasaskan Pilihan & MS seperti Semasa) -->
+                        <!-- REKOD LEPAS -->
                         <td class="p-3 space-y-1.5">
                             <select onchange="onRecordLevelChange(this, 'past')" class="w-full px-2 py-1 bg-white border border-slate-200 rounded-lg text-xs font-bold text-slate-700 past-level-select">
                                 ${pastOptions}
                             </select>
                             <div class="flex items-center gap-1">
                                 <span class="text-[10px] text-slate-500 font-semibold">MS:</span>
-                                <input type="text" class="w-full px-2 py-1 bg-slate-50 border border-slate-200 rounded-lg text-xs font-mono past-ms-input" placeholder="Cth: 4 atau 12-15" value="${rec.pastMs || ''}">
+                                <input type="text" class="w-full px-2 py-1 bg-slate-50 border border-slate-200 rounded-lg text-xs font-mono past-ms-input" placeholder="Cth: 4 atau bebas..." value="${rec.pastMs || ''}">
                             </div>
                         </td>
 
-                        <!-- MINGGU 1 - 4 (Hanya Nombor & Simbol '-') -->
+                        <!-- MINGGU 1 - 4 (Interactive Picker Trigger) -->
                         <td class="p-3 text-center">
-                            <input type="text" class="w-full px-1.5 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs text-center w1-input font-mono" placeholder="ms..." value="${rec.w1 || ''}" oninput="validatePageInput(this)">
+                            <input type="text" onclick="openPagePicker(this, '${s.id}', 'w1')" readonly class="w-full px-1.5 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs text-center w1-input font-mono cursor-pointer hover:border-emerald-500" placeholder="Pilih..." value="${rec.w1 || ''}">
                         </td>
                         <td class="p-3 text-center">
-                            <input type="text" class="w-full px-1.5 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs text-center w2-input font-mono" placeholder="ms..." value="${rec.w2 || ''}" oninput="validatePageInput(this)">
+                            <input type="text" onclick="openPagePicker(this, '${s.id}', 'w2')" readonly class="w-full px-1.5 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs text-center w2-input font-mono cursor-pointer hover:border-emerald-500" placeholder="Pilih..." value="${rec.w2 || ''}">
                         </td>
                         <td class="p-3 text-center">
-                            <input type="text" class="w-full px-1.5 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs text-center w3-input font-mono" placeholder="ms..." value="${rec.w3 || ''}" oninput="validatePageInput(this)">
+                            <input type="text" onclick="openPagePicker(this, '${s.id}', 'w3')" readonly class="w-full px-1.5 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs text-center w3-input font-mono cursor-pointer hover:border-emerald-500" placeholder="Pilih..." value="${rec.w3 || ''}">
                         </td>
                         <td class="p-3 text-center">
-                            <input type="text" class="w-full px-1.5 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs text-center w4-input font-mono" placeholder="ms..." value="${rec.w4 || ''}" oninput="validatePageInput(this)">
+                            <input type="text" onclick="openPagePicker(this, '${s.id}', 'w4')" readonly class="w-full px-1.5 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs text-center w4-input font-mono cursor-pointer hover:border-emerald-500" placeholder="Pilih..." value="${rec.w4 || ''}">
                         </td>
 
                         <!-- REKOD BACAAN SEMASA -->
@@ -864,22 +881,22 @@
                             </select>
                             <div class="flex items-center gap-1">
                                 <span class="text-[10px] text-slate-500 font-semibold">MS:</span>
-                                <input type="text" class="w-full px-2 py-1 bg-slate-50 border border-slate-200 rounded-lg text-xs font-mono current-ms-input" placeholder="Cth: 4-5 atau 12" value="${rec.currentMs || ''}">
+                                <input type="text" class="w-full px-2 py-1 bg-slate-50 border border-slate-200 rounded-lg text-xs font-mono current-ms-input" placeholder="Cth: 10..." value="${rec.currentMs || ''}">
                             </div>
                         </td>
 
-                        <!-- SASARAN MURID (Kini Berasaskan Pilihan & MS) -->
+                        <!-- SASARAN MURID -->
                         <td class="p-3 space-y-1.5">
                             <select onchange="onRecordLevelChange(this, 'target')" class="w-full px-2 py-1 bg-white border border-slate-200 rounded-lg text-xs font-bold text-indigo-800 target-level-select">
                                 ${targetOptions}
                             </select>
                             <div class="flex items-center gap-1">
                                 <span class="text-[10px] text-slate-500 font-semibold">MS:</span>
-                                <input type="text" class="w-full px-2 py-1 bg-slate-50 border border-slate-200 rounded-lg text-xs font-mono target-ms-input" placeholder="Cth: 10" value="${rec.targetMs || ''}">
+                                <input type="text" class="w-full px-2 py-1 bg-slate-50 border border-slate-200 rounded-lg text-xs font-mono target-ms-input" placeholder="Cth: 15..." value="${rec.targetMs || ''}">
                             </div>
                         </td>
 
-                        <!-- CATATAN (Dropdown: Sangat Lancar / Sederhana / Kurang Lancar / Mengulang) -->
+                        <!-- CATATAN -->
                         <td class="p-3">
                             <select class="w-full px-2 py-2 bg-white border border-slate-200 rounded-lg text-xs font-semibold text-slate-700 notes-select">
                                 ${notesOptions}
@@ -889,7 +906,7 @@
                 `;
             });
 
-            // Set selected values for level selectors dynamically loaded via innerHTML
+            // Set selected values
             classStudents.forEach((s) => {
                 const row = tbody.querySelector(`tr[data-id="${s.id}"]`);
                 if(row && classRecs[s.id]) {
@@ -900,28 +917,93 @@
             });
         }
 
+        // Logic for handling level changes & strict page restrictions based on Juzuk vs Iqra
         function onRecordLevelChange(selectEl, type) {
             const row = selectEl.closest('tr');
             const val = selectEl.value;
             const rangeInfo = juzukPageRanges[val];
             const msInput = row.querySelector(`.${type}-ms-input`);
 
-            if (rangeInfo && (rangeInfo.type === 'juzuk' || rangeInfo.type === 'khatam')) {
-                msInput.value = `${rangeInfo.start}-${rangeInfo.end}`;
-                msInput.readOnly = true;
-                msInput.classList.add('bg-slate-100', 'text-slate-600');
-            } else {
+            if (rangeInfo && rangeInfo.type === 'juzuk') {
+                // Juzuk is restricted to its page numbers
                 msInput.readOnly = false;
-                msInput.classList.remove('bg-slate-100', 'text-slate-600');
-                if (!msInput.value || msInput.value.includes('-')) {
-                    msInput.value = '1';
-                }
+                msInput.placeholder = `Jz ${val.replace('JUZUK ','')} (${rangeInfo.start}-${rangeInfo.end})`;
+            } else if (rangeInfo && rangeInfo.type === 'khatam') {
+                msInput.value = "604";
+                msInput.readOnly = true;
+            } else {
+                // Iqra is free to input any page
+                msInput.readOnly = false;
+                msInput.placeholder = "Bebas nombor...";
             }
         }
 
-        // Membenarkan nombor dan simbol '-' sahaja untuk input minggu
-        function validatePageInput(inputEl) {
-            inputEl.value = inputEl.value.replace(/[^0-9\-]/g, '');
+        // Interactive Page Picker Modal for Weekly (W1, W2, W3, W4)
+        let activeInputEl = null;
+        function openPagePicker(inputEl, studentId, weekKey) {
+            activeInputEl = inputEl;
+            const row = inputEl.closest('tr');
+            const currentLevel = row.querySelector('.current-level-select').value;
+            const rangeInfo = juzukPageRanges[currentLevel];
+
+            const modal = document.getElementById('page-picker-modal');
+            const grid = document.getElementById('picker-pages-grid');
+            document.getElementById('picker-modal-title').innerText = `Pilih Muka Surat (${weekKey.toUpperCase()}) - ${rangeInfo.label}`;
+            grid.innerHTML = '';
+
+            let min = 1, max = 30;
+            if (rangeInfo.type === 'juzuk') {
+                min = rangeInfo.start;
+                max = rangeInfo.end;
+            } else if (rangeInfo.type === 'iqra') {
+                min = rangeInfo.min;
+                max = rangeInfo.max;
+            } else if (rangeInfo.type === 'khatam') {
+                min = 604;
+                max = 604;
+            }
+
+            const currentVals = inputEl.value ? inputEl.value.split(',').map(v => v.trim()) : [];
+
+            for(let p = min; p <= max; p++) {
+                const isSelected = currentVals.includes(p.toString());
+                const btnClass = isSelected 
+                    ? "bg-emerald-600 text-white font-bold border-emerald-700 shadow-sm" 
+                    : "bg-white text-slate-700 border-slate-200 hover:bg-slate-100 font-semibold";
+
+                grid.innerHTML += `
+                    <button type="button" onclick="togglePageSelection(this, '${p}')" class="py-2 rounded-xl border text-xs transition ${btnClass} page-btn-${p}">
+                        ${p}
+                    </button>
+                `;
+            }
+
+            modal.classList.remove('hidden');
+            setTimeout(() => modal.classList.remove('opacity-0'), 10);
+        }
+
+        function togglePageSelection(btn, pageNum) {
+            if(!activeInputEl) return;
+            let currentVals = activeInputEl.value ? activeInputEl.value.split(',').map(v => v.trim()).filter(v => v) : booleanCheck = [] : [];
+            // simplify
+            currentVals = activeInputEl.value ? activeInputEl.value.split(',').map(v => v.trim()).filter(Boolean) : [];
+
+            const idx = currentVals.indexOf(pageNum);
+            if(idx > -1) {
+                currentVals.splice(idx, 1);
+                btn.className = "py-2 rounded-xl border text-xs transition bg-white text-slate-700 border-slate-200 hover:bg-slate-100 font-semibold page-btn-" + pageNum;
+            } else {
+                currentVals.push(pageNum);
+                currentVals.sort((a,b) => parseInt(a) - parseInt(b));
+                btn.className = "py-2 rounded-xl border text-xs transition bg-emerald-600 text-white font-bold border-emerald-700 shadow-sm page-btn-" + pageNum;
+            }
+            activeInputEl.value = currentVals.join(', ');
+        }
+
+        function closePagePicker() {
+            const modal = document.getElementById('page-picker-modal');
+            modal.classList.add('opacity-0');
+            setTimeout(() => modal.classList.add('hidden'), 300);
         }
 
         function saveAllRecords() {
