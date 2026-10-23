@@ -50,25 +50,31 @@
                 </div>
             </div>
             
-            <!-- Navigation Tabs -->
-            <nav class="flex flex-wrap gap-2 justify-center bg-white/10 p-1.5 rounded-2xl backdrop-blur-md border border-white/20">
-                <button onclick="switchTab('analytics')" id="nav-analytics" class="tab-btn px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-200 flex items-center space-x-2 bg-white text-emerald-900 shadow-md">
-                    <i class="fa-solid fa-chart-pie"></i>
-                    <span>Analisis Semasa</span>
-                </button>
-                <button onclick="switchTab('students')" id="nav-students" class="tab-btn px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-200 flex items-center space-x-2 text-white hover:bg-white/20">
-                    <i class="fa-solid fa-users-gear"></i>
-                    <span>Data Murid</span>
-                </button>
-                <button onclick="switchTab('records')" id="nav-records" class="tab-btn px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-200 flex items-center space-x-2 text-white hover:bg-white/20">
-                    <i class="fa-solid fa-book-open-reader"></i>
-                    <span>Rekod Tasmik</span>
-                </button>
-                <button onclick="switchTab('matrix')" id="nav-matrix" class="tab-btn px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-200 flex items-center space-x-2 text-white hover:bg-white/20">
-                    <i class="fa-solid fa-table-cells"></i>
-                    <span>Jadual Matriks</span>
-                </button>
-            </nav>
+            <!-- Navigation Tabs & Live Sync Indicator -->
+            <div class="flex items-center gap-3">
+                <div id="sync-status" class="hidden sm:flex items-center gap-1.5 px-3 py-1 bg-emerald-800/60 rounded-full text-[11px] font-medium text-emerald-200 border border-emerald-400/30 shadow-inner">
+                    <span id="sync-dot" class="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse"></span>
+                    <span id="sync-text">Menyambung ke Realtime DB...</span>
+                </div>
+                <nav class="flex flex-wrap gap-2 justify-center bg-white/10 p-1.5 rounded-2xl backdrop-blur-md border border-white/20">
+                    <button onclick="switchTab('analytics')" id="nav-analytics" class="tab-btn px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-200 flex items-center space-x-2 bg-white text-emerald-900 shadow-md">
+                        <i class="fa-solid fa-chart-pie"></i>
+                        <span>Analisis Semasa</span>
+                    </button>
+                    <button onclick="switchTab('students')" id="nav-students" class="tab-btn px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-200 flex items-center space-x-2 text-white hover:bg-white/20">
+                        <i class="fa-solid fa-users-gear"></i>
+                        <span>Data Murid</span>
+                    </button>
+                    <button onclick="switchTab('records')" id="nav-records" class="tab-btn px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-200 flex items-center space-x-2 text-white hover:bg-white/20">
+                        <i class="fa-solid fa-book-open-reader"></i>
+                        <span>Rekod Tasmik</span>
+                    </button>
+                    <button onclick="switchTab('matrix')" id="nav-matrix" class="tab-btn px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-200 flex items-center space-x-2 text-white hover:bg-white/20">
+                        <i class="fa-solid fa-table-cells"></i>
+                        <span>Jadual Matriks</span>
+                    </button>
+                </nav>
+            </div>
         </div>
     </header>
 
@@ -82,11 +88,11 @@
                 <div class="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-emerald-950/85 to-indigo-950/90 z-0"></div>
                 <div class="relative z-10 space-y-3 max-w-2xl">
                     <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/30 text-emerald-200 border border-emerald-400/40 backdrop-blur-sm">
-                        <i class="fa-solid fa-award mr-1"></i> Dashboard Pemantauan Al-Quran & Iqra' Sekolah
+                        <i class="fa-solid fa-award mr-1"></i> Dashboard Pemantauan Al-Quran & Iqra' Firebase
                     </span>
                     <h2 class="text-3xl sm:text-4xl font-black tracking-tight">Analisis Pencapaian Tasmik Semasa</h2>
                     <p class="text-slate-300 text-sm sm:text-base">
-                        Rumusan utama merangkumi taburan keseluruhan Iqra', Juzuk, dan Khatam Al-Quran. Tekan butang 'Lihat Pecahan Terperinci' untuk paparan terperinci.
+                        Rumusan utama merangkumi taburan keseluruhan Iqra', Juzuk, dan Khatam Al-Quran diselaraskan secara langsung. Tekan butang di bawah untuk pecahan terperinci.
                     </p>
                 </div>
             </div>
@@ -141,7 +147,7 @@
                 </div>
             </div>
 
-            <!-- Drilldown Containers (Hidden by default, shown on click) -->
+            <!-- Drilldown Containers -->
             <div id="drilldown-iqra-container" class="hidden bg-white rounded-3xl p-6 shadow-md border border-amber-200 space-y-4">
                 <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2">
                     <i class="fa-solid fa-chart-bar text-amber-600"></i> Pecahan Mengikut Tahap Iqra' (1 - 6)
@@ -163,7 +169,7 @@
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
                     <div>
                         <h2 class="text-xl font-bold text-slate-800">Pengurusan Data Murid Tasmik</h2>
-                        <p class="text-sm text-slate-500">Pendaftaran murid secara satu persatu (Single) atau secara pukal (Bulk) mengikut kelas.</p>
+                        <p class="text-sm text-slate-500">Pendaftaran murid secara satu persatu (Single) atau pukal (Bulk) diselaraskan langsung ke pangkalan data.</p>
                     </div>
                     <!-- Filter Tahun & Kelas -->
                     <div class="flex flex-wrap gap-2 w-full sm:w-auto">
@@ -308,7 +314,7 @@
                 <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mb-6">
                     <div>
                         <h2 class="text-xl font-bold text-slate-800">Rekod Tasmik Mingguan Mengikut Bulan & Kelas</h2>
-                        <p class="text-sm text-slate-500">Pilih Tahun Persekolahan, Tahun Kalendar, Bulan, dan Kelas untuk mengemaskini rekod.</p>
+                        <p class="text-sm text-slate-500">Pilih Tahun Persekolahan, Tahun Kalendar, Bulan, dan Kelas.</p>
                     </div>
                     <!-- Pilih Tahun 1-6, Kalendar 2026-2099, Bulan & Kelas -->
                     <div class="flex flex-wrap gap-2 w-full lg:w-auto">
@@ -524,19 +530,37 @@
         <p>&copy; <span id="footer-year">2026</span> Sistem Pengurusan Tasmik Al-Quran Sekolah • Direka Khas Untuk Guru J-QAF & Pendidikan Islam.</p>
     </footer>
 
-    <!-- JavaScript Logic -->
-    <script>
-        let students = JSON.parse(localStorage.getItem('tasmik_students_v4')) || [];
-        let monthlyRecords = JSON.parse(localStorage.getItem('tasmik_monthly_records_v4')) || {};
+    <!-- Firebase Realtime Database & Application Logic -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-analytics.js";
+        import { getDatabase, ref, set, onValue, remove } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAo2fD7Bc_owXRrUVimeqPIOb2rNi9yrlk",
+            authDomain: "tasmik-5b58e.firebaseapp.com",
+            databaseURL: "https://tasmik-5b58e-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "tasmik-5b58e",
+            storageBucket: "tasmik-5b58e.firebasestorage.app",
+            messagingSenderId: "244089473415",
+            appId: "1:244089473415:web:baed3d7e48f27f9e82ab22",
+            measurementId: "G-3S1KFYRG7V"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const database = getDatabase(app);
+
+        window.students = [];
+        window.monthlyRecords = {};
 
         const sampleStudents = [
-            { id: 101, name: "Muhammad Adam bin Zulkifli", year: "Tahun 3", className: "Daisy" },
-            { id: 102, name: "Nur Aina Mardhiah binti Azman", year: "Tahun 3", className: "Daisy" },
-            { id: 103, name: "Ahmad Ziqri bin Hairul", year: "Tahun 3", className: "Daisy" }
+            { id: 101, name: "Muhammad Adam bin Zulkifli", year: "Tahun 3", className: "Daisy", pastRecord: "1IQ1", pastMs: "1" },
+            { id: 102, name: "Nur Aina Mardhiah binti Azman", year: "Tahun 3", className: "Daisy", pastRecord: "1IQ1", pastMs: "1" },
+            { id: 103, name: "Ahmad Ziqri bin Hairul", year: "Tahun 3", className: "Daisy", pastRecord: "1IQ1", pastMs: "1" }
         ];
 
-        // Juzuk ranges and Iqra definitions
-        const juzukPageRanges = {
+        window.juzukPageRanges = {
             "1IQ1": { type: "iqra", label: "Iqra' 1", min: 1, max: 30 },
             "1IQ2": { type: "iqra", label: "Iqra' 2", min: 1, max: 32 },
             "1IQ3": { type: "iqra", label: "Iqra' 3", min: 1, max: 32 },
@@ -576,18 +600,17 @@
             "KHATAM": { type: "khatam", start: 604, end: 604, label: "Khatam Al-Quran" }
         };
 
-        const availableLevels = Object.keys(juzukPageRanges);
+        const availableLevels = Object.keys(window.juzukPageRanges);
 
-        function buildLevelOptionsHtml(selectedVal) {
+        window.buildLevelOptionsHtml = function(selectedVal) {
             let html = '';
             availableLevels.forEach(lvl => {
                 const selected = (selectedVal === lvl) ? 'selected' : '';
-                html += `<option value="${lvl}" ${selected}>${juzukPageRanges[lvl].label}</option>`;
+                html += `<option value="${lvl}" ${selected}>${window.juzukPageRanges[lvl].label}</option>`;
             });
             return html;
         }
 
-        // Initialize calendar years 2026-2099
         function initCalendarYears() {
             let options = '';
             for (let y = 2026; y <= 2099; y++) {
@@ -599,8 +622,72 @@
             if (matCal) matCal.innerHTML = options;
         }
 
+        // Initialize Realtime Database Listeners
+        function initRealtimeDatabase() {
+            const syncText = document.getElementById('sync-text');
+            const syncDot = document.getElementById('sync-dot');
+
+            const studentsRef = ref(database, 'tasmik_sekolah/students');
+            onValue(studentsRef, (snapshot) => {
+                const data = snapshot.val();
+                if (data !== null && data !== undefined) {
+                    window.students = Array.isArray(data) ? data : Object.values(data);
+                } else {
+                    // Pastikan ia kosong sekiranya memang tiada data di Firebase / telah dipadam
+                    window.students = [];
+                }
+                syncDot.className = "w-2.5 h-2.5 rounded-full bg-emerald-400";
+                syncText.innerText = "Realtime DB Diselaraskan";
+                renderAnalytics();
+                renderStudentsTable();
+            }, (error) => {
+                console.error("Database connection error:", error);
+                syncDot.className = "w-2.5 h-2.5 rounded-full bg-rose-500";
+                syncText.innerText = "Gagal Sambung Database";
+            });
+
+            const recordsRef = ref(database, 'tasmik_sekolah/monthlyRecords');
+            onValue(recordsRef, (snapshot) => {
+                const data = snapshot.val();
+                window.monthlyRecords = data || {};
+                renderAnalytics();
+                if (!document.getElementById('tab-records').classList.contains('hidden')) {
+                    loadClassRecords();
+                }
+                if (!document.getElementById('tab-matrix').classList.contains('hidden')) {
+                    loadMatrixTable();
+                }
+            });
+        }
+
+        window.saveStudentsToFirebase = async function() {
+            try {
+                const studentsRef = ref(database, 'tasmik_sekolah/students');
+                if (window.students.length === 0) {
+                    await set(studentsRef, null);
+                } else {
+                    await set(studentsRef, window.students);
+                }
+            } catch (e) {
+                console.error("Error saving students:", e);
+            }
+        }
+
+        window.saveRecordsToFirebase = async function() {
+            try {
+                const recordsRef = ref(database, 'tasmik_sekolah/monthlyRecords');
+                if (Object.keys(window.monthlyRecords).length === 0) {
+                    await set(recordsRef, null);
+                } else {
+                    await set(recordsRef, window.monthlyRecords);
+                }
+            } catch (e) {
+                console.error("Error saving records:", e);
+            }
+        }
+
         // Tab Switching
-        function switchTab(tabId) {
+        window.switchTab = function(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
             document.getElementById('tab-' + tabId).classList.remove('hidden');
 
@@ -615,7 +702,7 @@
             if (tabId === 'matrix') loadMatrixTable();
         }
 
-        function showNotification(title, message, isSuccess = true) {
+        window.showNotification = function(title, message, isSuccess = true) {
             const modal = document.getElementById('notification-modal');
             const box = document.getElementById('notification-box-content');
             document.getElementById('notification-title').innerText = title;
@@ -635,7 +722,7 @@
             }, 10);
         }
 
-        function closeNotification() {
+        window.closeNotification = function() {
             const modal = document.getElementById('notification-modal');
             const box = document.getElementById('notification-box-content');
             modal.classList.add('opacity-0');
@@ -644,13 +731,13 @@
         }
 
         // ---------------- TAB 1: ANALYTICS 3 MAIN CIRCLES + DRILLDOWN ----------------
-        function renderAnalytics() {
+        window.renderAnalytics = function() {
             let countIqra = 0, countJuzuk = 0, countKhatam = 0;
             const iqraCounts = { "1IQ1":0, "1IQ2":0, "1IQ3":0, "1IQ4":0, "1IQ5":0, "1IQ6":0 };
             const juzukCounts = {};
             for(let i=1; i<=30; i++) juzukCounts[`JUZUK ${i}`] = 0;
 
-            students.forEach(s => {
+            window.students.forEach(s => {
                 const curr = getLatestStudentLevel(s.id).toUpperCase();
                 if(curr.includes("IQ")) {
                     countIqra++;
@@ -698,7 +785,7 @@
             }
         }
 
-        function toggleDrilldown(type) {
+        window.toggleDrilldown = function(type) {
             const container = document.getElementById(`drilldown-${type}-container`);
             const icon = document.getElementById(`icon-drill-${type}`);
             if(container.classList.contains('hidden')) {
@@ -714,21 +801,21 @@
             const months = ["Januari", "Februari", "Mac", "April", "Mei", "Jun", "Julai", "Ogos", "September", "Oktober", "November", "Disember"];
             for (let i = months.length - 1; i >= 0; i--) {
                 const m = months[i];
-                for (let clsKey in monthlyRecords) {
+                for (let clsKey in window.monthlyRecords) {
                     if (clsKey.includes("_" + m + "_")) {
-                        const recs = monthlyRecords[clsKey];
+                        const recs = window.monthlyRecords[clsKey];
                         if (recs[studentId] && recs[studentId].current) {
                             return recs[studentId].current;
                         }
                     }
                 }
             }
-            const s = students.find(item => item.id === studentId);
+            const s = window.students.find(item => item.id === studentId);
             return s ? (s.pastRecord || "1IQ1") : "1IQ1";
         }
 
         // ---------------- TAB 2: STUDENTS MANAGEMENT ----------------
-        function switchInputMode(mode) {
+        window.switchInputMode = function(mode) {
             const singleBtn = document.getElementById('mode-single-btn');
             const bulkBtn = document.getElementById('mode-bulk-btn');
             const singleForm = document.getElementById('form-single-student');
@@ -747,18 +834,18 @@
             }
         }
 
-        function renderStudentsTable() {
+        window.renderStudentsTable = function() {
             const tbody = document.getElementById('students-table-body');
             const filterTahun = document.getElementById('filter-tahun').value;
             const filterKelas = document.getElementById('filter-kelas-input').value;
 
             tbody.innerHTML = '';
-            const filtered = students.filter(s => {
+            const filtered = window.students.filter(s => {
                 return (filterTahun === "" || s.year === filterTahun) && (filterKelas === "" || s.className === filterKelas);
             });
 
             if(filtered.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="5" class="p-6 text-center text-slate-400">Tiada rekod murid ditemui.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="5" class="p-6 text-center text-slate-400">Tiada rekod murid ditemui. Senarai kosong.</td></tr>`;
                 return;
             }
 
@@ -779,13 +866,13 @@
             });
         }
 
-        function addSingleStudent(event) {
+        window.addSingleStudent = async function(event) {
             event.preventDefault();
             const name = document.getElementById('single-name').value.trim();
             const year = document.getElementById('single-year').value;
             const className = document.getElementById('single-class').value;
 
-            students.push({
+            window.students.push({
                 id: Date.now() + Math.floor(Math.random() * 1000),
                 name: name,
                 year: year,
@@ -794,13 +881,13 @@
                 pastMs: "1"
             });
 
-            localStorage.setItem('tasmik_students_v4', JSON.stringify(students));
+            await saveStudentsToFirebase();
             document.getElementById('form-single-student').reset();
             renderStudentsTable();
-            showNotification('Berjaya!', 'Murid baru telah didaftarkan.');
+            showNotification('Berjaya!', 'Murid baru telah didaftarkan dan diselaraskan ke Firebase.');
         }
 
-        function addBulkStudents(event) {
+        window.addBulkStudents = async function(event) {
             event.preventDefault();
             const year = document.getElementById('bulk-year').value;
             const className = document.getElementById('bulk-class').value;
@@ -813,7 +900,7 @@
             }
 
             lines.forEach((name, idx) => {
-                students.push({
+                window.students.push({
                     id: Date.now() + idx + Math.floor(Math.random() * 1000),
                     name: name,
                     year: year,
@@ -823,56 +910,66 @@
                 });
             });
 
-            localStorage.setItem('tasmik_students_v4', JSON.stringify(students));
+            await saveStudentsToFirebase();
             document.getElementById('bulk-names-textarea').value = '';
             renderStudentsTable();
-            showNotification('Berjaya!', `${lines.length} orang murid telah berjaya diimport.`);
+            showNotification('Berjaya!', `${lines.length} orang murid telah berjaya diimport ke Firebase.`);
         }
 
-        function deleteStudent(id) {
-            students = students.filter(s => s.id !== id);
-            localStorage.setItem('tasmik_students_v4', JSON.stringify(students));
+        window.deleteStudent = async function(id) {
+            window.students = window.students.filter(s => s.id !== id);
+            await saveStudentsToFirebase();
             renderStudentsTable();
             showNotification('Dipadam', 'Rekod murid telah dipadam.', false);
         }
 
-        function loadSampleData() {
-            students = sampleStudents;
-            monthlyRecords = {};
-            localStorage.setItem('tasmik_students_v4', JSON.stringify(students));
-            localStorage.setItem('tasmik_monthly_records_v4', JSON.stringify(monthlyRecords));
+        window.loadSampleData = async function() {
+            window.students = sampleStudents;
+            window.monthlyRecords = {};
+            await saveStudentsToFirebase();
+            await saveRecordsToFirebase();
             renderStudentsTable();
-            showNotification('Demo Dimuatkan', 'Data contoh telah dimasukkan.');
+            showNotification('Demo Dimuatkan', 'Data contoh telah dimasukkan ke Firebase.');
         }
 
-        function resetAllData() {
-            students = [];
-            monthlyRecords = {};
-            localStorage.removeItem('tasmik_students_v4');
-            localStorage.removeItem('tasmik_monthly_records_v4');
-            renderStudentsTable();
-            showNotification('Semua Dipadam', 'Semua data sistem telah dikosongkan.', false);
+        window.resetAllData = async function() {
+            if(confirm("Adakah anda pasti mahu memadam kesemua data murid dan rekod tasmik? Tindakan ini tidak boleh diundurkan.")) {
+                window.students = [];
+                window.monthlyRecords = {};
+                
+                // Padam terus dari pangkalan data Firebase
+                try {
+                    const studentsRef = ref(database, 'tasmik_sekolah/students');
+                    const recordsRef = ref(database, 'tasmik_sekolah/monthlyRecords');
+                    await set(studentsRef, null);
+                    await set(recordsRef, null);
+                } catch(e) {
+                    console.error("Gagal kosongkan Firebase:", e);
+                }
+
+                renderStudentsTable();
+                renderAnalytics();
+                showNotification('Semua Dipadam', 'Semua data pangkalan data telah dikosongkan sepenuhnya.', false);
+            }
         }
 
         // ---------------- TAB 3: REKOD TASMIK BULANAN ----------------
-        function loadClassRecords() {
+        window.loadClassRecords = function() {
             const levelYear = document.getElementById('select-level-year-records').value;
             const calYear = document.getElementById('select-cal-year-records').value;
             const month = document.getElementById('select-month-records').value;
             const className = document.getElementById('select-class-records').value;
             
-            // Update header calendar year
             document.getElementById('header-calendar-year').innerText = calYear;
             document.getElementById('footer-year').innerText = calYear;
 
             const tbody = document.getElementById('records-table-body');
             tbody.innerHTML = '';
 
-            // Filter students by chosen school year (Tahun 1-6) and class
-            const classStudents = students.filter(s => s.year === levelYear && s.className === className);
+            const classStudents = window.students.filter(s => s.year === levelYear && s.className === className);
             const recordKey = `${levelYear}_${calYear}_${month}_${className}`;
-            if (!monthlyRecords[recordKey]) monthlyRecords[recordKey] = {};
-            const classRecs = monthlyRecords[recordKey];
+            if (!window.monthlyRecords[recordKey]) window.monthlyRecords[recordKey] = {};
+            const classRecs = window.monthlyRecords[recordKey];
 
             if(classStudents.length === 0) {
                 tbody.innerHTML = `<tr><td colspan="10" class="p-6 text-center text-slate-400">Tiada murid dalam ${levelYear} Kelas ${className}. Sila daftar murid dahulu di tab 'Data Murid'.</td></tr>`;
@@ -894,9 +991,9 @@
                 }
                 const rec = classRecs[s.id];
 
-                let pastOptions = buildLevelOptionsHtml(rec.pastRecord || "1IQ1");
-                let currentOptions = buildLevelOptionsHtml(rec.current || "1IQ1");
-                let targetOptions = buildLevelOptionsHtml(rec.target || "JUZUK 1");
+                let pastOptions = window.buildLevelOptionsHtml(rec.pastRecord || "1IQ1");
+                let currentOptions = window.buildLevelOptionsHtml(rec.current || "1IQ1");
+                let targetOptions = window.buildLevelOptionsHtml(rec.target || "JUZUK 1");
 
                 const notesOptions = ["Sangat Lancar", "Sederhana", "Kurang Lancar", "Mengulang"].map(opt => {
                     const sel = (rec.notes === opt) ? 'selected' : '';
@@ -908,42 +1005,42 @@
                         <td class="p-3 text-center font-semibold text-slate-600">${idx + 1}</td>
                         <td class="p-3 font-medium text-slate-800">${s.name}</td>
                         
-                        <!-- REKOD LEPAS (Level + Popup Picker) -->
+                        <!-- REKOD LEPAS -->
                         <td class="p-3 space-y-1.5">
-                            <select onchange="onRecordLevelChange(this, 'past')" class="w-full px-2 py-1 bg-white border border-slate-200 rounded-lg text-xs font-bold text-slate-700 past-level-select">
+                            <select onchange="window.onRecordLevelChange(this, 'past')" class="w-full px-2 py-1 bg-white border border-slate-200 rounded-lg text-xs font-bold text-slate-700 past-level-select">
                                 ${pastOptions}
                             </select>
-                            <input type="text" onclick="openPagePicker(this, '${s.id}', 'past')" readonly class="w-full px-2 py-1 bg-slate-50 border border-slate-200 rounded-lg text-xs font-mono past-ms-input cursor-pointer hover:border-emerald-500 text-center" placeholder="Pilih Muka Surat..." value="${rec.pastMs || ''}">
+                            <input type="text" onclick="window.openPagePicker(this, '${s.id}', 'past')" readonly class="w-full px-2 py-1 bg-slate-50 border border-slate-200 rounded-lg text-xs font-mono past-ms-input cursor-pointer hover:border-emerald-500 text-center" placeholder="Pilih Muka Surat..." value="${rec.pastMs || ''}">
                         </td>
 
-                        <!-- MINGGU 1 - 4 (Interactive Picker Trigger) -->
+                        <!-- MINGGU 1 - 4 -->
                         <td class="p-3 text-center">
-                            <input type="text" onclick="openPagePicker(this, '${s.id}', 'w1')" readonly class="w-full px-1.5 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs text-center w1-input font-mono cursor-pointer hover:border-emerald-500" placeholder="Pilih..." value="${rec.w1 || ''}">
+                            <input type="text" onclick="window.openPagePicker(this, '${s.id}', 'w1')" readonly class="w-full px-1.5 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs text-center w1-input font-mono cursor-pointer hover:border-emerald-500" placeholder="Pilih..." value="${rec.w1 || ''}">
                         </td>
                         <td class="p-3 text-center">
-                            <input type="text" onclick="openPagePicker(this, '${s.id}', 'w2')" readonly class="w-full px-1.5 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs text-center w2-input font-mono cursor-pointer hover:border-emerald-500" placeholder="Pilih..." value="${rec.w2 || ''}">
+                            <input type="text" onclick="window.openPagePicker(this, '${s.id}', 'w2')" readonly class="w-full px-1.5 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs text-center w2-input font-mono cursor-pointer hover:border-emerald-500" placeholder="Pilih..." value="${rec.w2 || ''}">
                         </td>
                         <td class="p-3 text-center">
-                            <input type="text" onclick="openPagePicker(this, '${s.id}', 'w3')" readonly class="w-full px-1.5 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs text-center w3-input font-mono cursor-pointer hover:border-emerald-500" placeholder="Pilih..." value="${rec.w3 || ''}">
+                            <input type="text" onclick="window.openPagePicker(this, '${s.id}', 'w3')" readonly class="w-full px-1.5 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs text-center w3-input font-mono cursor-pointer hover:border-emerald-500" placeholder="Pilih..." value="${rec.w3 || ''}">
                         </td>
                         <td class="p-3 text-center">
-                            <input type="text" onclick="openPagePicker(this, '${s.id}', 'w4')" readonly class="w-full px-1.5 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs text-center w4-input font-mono cursor-pointer hover:border-emerald-500" placeholder="Pilih..." value="${rec.w4 || ''}">
+                            <input type="text" onclick="window.openPagePicker(this, '${s.id}', 'w4')" readonly class="w-full px-1.5 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs text-center w4-input font-mono cursor-pointer hover:border-emerald-500" placeholder="Pilih..." value="${rec.w4 || ''}">
                         </td>
 
                         <!-- REKOD BACAAN SEMASA -->
                         <td class="p-3 space-y-1.5">
-                            <select onchange="onRecordLevelChange(this, 'current')" class="w-full px-2 py-1 bg-white border border-slate-200 rounded-lg text-xs font-bold text-emerald-800 current-level-select">
+                            <select onchange="window.onRecordLevelChange(this, 'current')" class="w-full px-2 py-1 bg-white border border-slate-200 rounded-lg text-xs font-bold text-emerald-800 current-level-select">
                                 ${currentOptions}
                             </select>
-                            <input type="text" onclick="openPagePicker(this, '${s.id}', 'current')" readonly class="w-full px-2 py-1 bg-slate-50 border border-slate-200 rounded-lg text-xs font-mono current-ms-input cursor-pointer hover:border-emerald-500 text-center" placeholder="Pilih Muka Surat..." value="${rec.currentMs || ''}">
+                            <input type="text" onclick="window.openPagePicker(this, '${s.id}', 'current')" readonly class="w-full px-2 py-1 bg-slate-50 border border-slate-200 rounded-lg text-xs font-mono current-ms-input cursor-pointer hover:border-emerald-500 text-center" placeholder="Pilih Muka Surat..." value="${rec.currentMs || ''}">
                         </td>
 
                         <!-- SASARAN MURID -->
                         <td class="p-3 space-y-1.5">
-                            <select onchange="onRecordLevelChange(this, 'target')" class="w-full px-2 py-1 bg-white border border-slate-200 rounded-lg text-xs font-bold text-indigo-800 target-level-select">
+                            <select onchange="window.onRecordLevelChange(this, 'target')" class="w-full px-2 py-1 bg-white border border-slate-200 rounded-lg text-xs font-bold text-indigo-800 target-level-select">
                                 ${targetOptions}
                             </select>
-                            <input type="text" onclick="openPagePicker(this, '${s.id}', 'target')" readonly class="w-full px-2 py-1 bg-slate-50 border border-slate-200 rounded-lg text-xs font-mono target-ms-input cursor-pointer hover:border-emerald-500 text-center" placeholder="Pilih Muka Surat..." value="${rec.targetMs || ''}">
+                            <input type="text" onclick="window.openPagePicker(this, '${s.id}', 'target')" readonly class="w-full px-2 py-1 bg-slate-50 border border-slate-200 rounded-lg text-xs font-mono target-ms-input cursor-pointer hover:border-emerald-500 text-center" placeholder="Pilih Muka Surat..." value="${rec.targetMs || ''}">
                         </td>
 
                         <!-- CATATAN -->
@@ -956,7 +1053,6 @@
                 `;
             });
 
-            // Set selected values
             classStudents.forEach((s) => {
                 const row = tbody.querySelector(`tr[data-id="${s.id}"]`);
                 if(row && classRecs[s.id]) {
@@ -967,19 +1063,17 @@
             });
         }
 
-        function onRecordLevelChange(selectEl, type) {
+        window.onRecordLevelChange = function(selectEl, type) {
             const row = selectEl.closest('tr');
             const msInput = row.querySelector(`.${type}-ms-input`);
             if(msInput) {
-                msInput.value = ""; // Reset page selection on level change
+                msInput.value = "";
             }
         }
 
-        // Interactive Page Picker Modal for all page fields (past, w1, w2, w3, w4, current, target)
         let activeInputEl = null;
-        let activeLevelSelectClass = 'current-level-select';
 
-        function openPagePicker(inputEl, studentId, fieldKey) {
+        window.openPagePicker = function(inputEl, studentId, fieldKey) {
             activeInputEl = inputEl;
             const row = inputEl.closest('tr');
             
@@ -988,7 +1082,7 @@
             else if (fieldKey === 'target') levelSelectName = 'target-level-select';
 
             const levelVal = row.querySelector(`.${levelSelectName}`).value;
-            const rangeInfo = juzukPageRanges[levelVal];
+            const rangeInfo = window.juzukPageRanges[levelVal];
 
             const modal = document.getElementById('page-picker-modal');
             const grid = document.getElementById('picker-pages-grid');
@@ -1035,7 +1129,7 @@
             setTimeout(() => modal.classList.remove('opacity-0'), 10);
         }
 
-        function togglePageSelection(btn, pageNum) {
+        window.togglePageSelection = function(btn, pageNum) {
             if(!activeInputEl) return;
             let currentVals = activeInputEl.value ? activeInputEl.value.split(',').map(v => v.trim()).filter(Boolean) : [];
 
@@ -1051,7 +1145,7 @@
             activeInputEl.value = currentVals.join(', ');
         }
 
-        function addCustomIqraPage() {
+        window.addCustomIqraPage = function() {
             const valInput = document.getElementById('picker-custom-page-input');
             const val = valInput.value.trim();
             if(!val || !activeInputEl) return;
@@ -1066,26 +1160,26 @@
             closePagePicker();
         }
 
-        function clearSelectedPages() {
+        window.clearSelectedPages = function() {
             if(activeInputEl) {
                 activeInputEl.value = '';
             }
             closePagePicker();
         }
 
-        function closePagePicker() {
+        window.closePagePicker = function() {
             const modal = document.getElementById('page-picker-modal');
             modal.classList.add('opacity-0');
             setTimeout(() => modal.classList.add('hidden'), 300);
         }
 
-        function saveAllRecords() {
+        window.saveAllRecords = async function() {
             const levelYear = document.getElementById('select-level-year-records').value;
             const calYear = document.getElementById('select-cal-year-records').value;
             const month = document.getElementById('select-month-records').value;
             const className = document.getElementById('select-class-records').value;
             const recordKey = `${levelYear}_${calYear}_${month}_${className}`;
-            if (!monthlyRecords[recordKey]) monthlyRecords[recordKey] = {};
+            if (!window.monthlyRecords[recordKey]) window.monthlyRecords[recordKey] = {};
 
             const rows = document.querySelectorAll('#records-table-body tr.student-row');
             rows.forEach(row => {
@@ -1104,17 +1198,17 @@
                 const targetMs = row.querySelector('.target-ms-input').value;
                 const notes = row.querySelector('.notes-select').value;
 
-                monthlyRecords[recordKey][id] = {
+                window.monthlyRecords[recordKey][id] = {
                     pastRecord, pastMs, w1, w2, w3, w4, current, currentMs, target, targetMs, notes
                 };
             });
 
-            localStorage.setItem('tasmik_monthly_records_v4', JSON.stringify(monthlyRecords));
-            showNotification('Berjaya!', `Rekod bulanan ${month} (${calYear}) untuk ${levelYear} Kelas ${className} telah disimpan.`);
+            await window.saveRecordsToFirebase();
+            showNotification('Berjaya!', `Rekod bulanan ${month} (${calYear}) untuk ${levelYear} Kelas ${className} telah diselaraskan ke Firebase.`);
         }
 
         // ---------------- TAB 4: JADUAL MATRIKS BULANAN ----------------
-        function loadMatrixTable() {
+        window.loadMatrixTable = function() {
             const levelYear = document.getElementById('select-level-year-matrix').value;
             const calYear = document.getElementById('select-cal-year-matrix').value;
             const month = document.getElementById('select-month-matrix').value;
@@ -1122,9 +1216,9 @@
             const tbody = document.getElementById('matrix-table-body');
             tbody.innerHTML = '';
 
-            const classStudents = students.filter(s => s.year === levelYear && s.className === className);
+            const classStudents = window.students.filter(s => s.year === levelYear && s.className === className);
             const recordKey = `${levelYear}_${calYear}_${month}_${className}`;
-            const classRecs = monthlyRecords[recordKey] || {};
+            const classRecs = window.monthlyRecords[recordKey] || {};
 
             if(classStudents.length === 0) {
                 tbody.innerHTML = `<tr><td colspan="8" class="p-6 text-center text-slate-400">Tiada data murid untuk matriks ${levelYear} Kelas ${className} pada bulan ${month} ${calYear}.</td></tr>`;
@@ -1134,10 +1228,10 @@
             classStudents.forEach((s, idx) => {
                 const rec = classRecs[s.id] || { pastRecord: s.pastRecord || "1IQ1", pastMs: "1", w1: "-", w2: "-", w3: "-", w4: "-", current: s.pastRecord || "1IQ1", currentMs: "" };
                 
-                const pastLabel = juzukPageRanges[rec.pastRecord] ? juzukPageRanges[rec.pastRecord].label : rec.pastRecord;
+                const pastLabel = window.juzukPageRanges[rec.pastRecord] ? window.juzukPageRanges[rec.pastRecord].label : rec.pastRecord;
                 const displayPast = `${pastLabel}${rec.pastMs ? ' (' + rec.pastMs + ')' : ''}`;
 
-                const currLabel = juzukPageRanges[rec.current] ? juzukPageRanges[rec.current].label : rec.current;
+                const currLabel = window.juzukPageRanges[rec.current] ? window.juzukPageRanges[rec.current].label : rec.current;
                 const displayStatus = `${currLabel}${rec.currentMs ? ' (' + rec.currentMs + ')' : ''}`;
 
                 tbody.innerHTML += `
@@ -1157,7 +1251,7 @@
 
         window.onload = function() {
             initCalendarYears();
-            renderAnalytics();
+            initRealtimeDatabase();
         };
     </script>
 </body>
