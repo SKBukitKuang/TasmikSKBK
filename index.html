@@ -15,9 +15,16 @@
             font-family: 'Inter', sans-serif;
         }
         .bg-tasmik-hero {
-            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(30, 41, 59, 0.9)), url('https://images.unsplash.com/photo-1609599006353-e629aaabfeae?auto=format&fit=crop&w=1920&q=80');
+            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(30, 41, 59, 0.9)), url('BGSKBK.jpg');
             background-size: cover;
             background-position: center;
+        }
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+        }
+        .animate-float {
+            animation: floatSlow 3s ease-in-out infinite;
         }
         ::-webkit-scrollbar {
             width: 8px;
@@ -35,18 +42,18 @@
         }
     </style>
 </head>
-<body class="h-full bg-slate-50 text-slate-800 flex flex-col">
+<body class="h-full bg-slate-50 text-slate-800 flex flex-col transition-all duration-300">
 
     <!-- Header / Navbar -->
     <header class="bg-gradient-to-r from-emerald-700 via-teal-600 to-indigo-700 text-white shadow-lg sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="flex items-center space-x-3">
-                <div class="w-12 h-12 rounded-full bg-white/15 flex items-center justify-center p-1 border-2 border-white/40 backdrop-blur-md shadow-inner overflow-hidden">
-                    <img src="https://placehold.co/100x100/ffffff/065f46?text=SK" alt="Logo Sekolah" class="w-full h-full object-cover rounded-full" onerror="this.src='https://placehold.co/100x100/10b981/ffffff?text=SK'">
+                <div class="w-12 h-12 rounded-full bg-white/15 flex items-center justify-center p-1 border-2 border-white/40 backdrop-blur-md shadow-inner overflow-hidden animate-pulse">
+                    <img src="LogoSKBK.jpg" alt="Logo Sekolah" class="w-full h-full object-cover rounded-full transition-transform duration-300 hover:scale-110" onerror="this.src='https://placehold.co/100x100/10b981/ffffff?text=SKBK'">
                 </div>
                 <div>
                     <h1 class="text-base sm:text-lg font-extrabold tracking-wide">SISTEM PENGURUSAN TASMIK</h1>
-                    <p class="text-xs text-emerald-100">SK. (NAMA SEKOLAH) • SESI <span id="header-calendar-year">2026</span></p>
+                    <p class="text-xs text-emerald-100">SK BUKIT KUANG • SESI <span id="header-calendar-year">2026</span></p>
                 </div>
             </div>
             
@@ -57,19 +64,19 @@
                     <span id="sync-text">Menyambung ke Realtime DB...</span>
                 </div>
                 <nav class="flex flex-wrap gap-2 justify-center bg-white/10 p-1.5 rounded-2xl backdrop-blur-md border border-white/20">
-                    <button onclick="switchTab('analytics')" id="nav-analytics" class="tab-btn px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-200 flex items-center space-x-2 bg-white text-emerald-900 shadow-md">
+                    <button onclick="switchTab('analytics')" id="nav-analytics" class="tab-btn px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-300 flex items-center space-x-2 bg-white text-emerald-900 shadow-md hover:scale-105">
                         <i class="fa-solid fa-chart-pie"></i>
                         <span>Analisis Semasa</span>
                     </button>
-                    <button onclick="switchTab('students')" id="nav-students" class="tab-btn px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-200 flex items-center space-x-2 text-white hover:bg-white/20">
+                    <button onclick="switchTab('students')" id="nav-students" class="tab-btn px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-300 flex items-center space-x-2 text-white hover:bg-white/20 hover:scale-105">
                         <i class="fa-solid fa-users-gear"></i>
                         <span>Data Murid</span>
                     </button>
-                    <button onclick="switchTab('records')" id="nav-records" class="tab-btn px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-200 flex items-center space-x-2 text-white hover:bg-white/20">
+                    <button onclick="switchTab('records')" id="nav-records" class="tab-btn px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-300 flex items-center space-x-2 text-white hover:bg-white/20 hover:scale-105">
                         <i class="fa-solid fa-book-open-reader"></i>
                         <span>Rekod Tasmik</span>
                     </button>
-                    <button onclick="switchTab('matrix')" id="nav-matrix" class="tab-btn px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-200 flex items-center space-x-2 text-white hover:bg-white/20">
+                    <button onclick="switchTab('matrix')" id="nav-matrix" class="tab-btn px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-300 flex items-center space-x-2 text-white hover:bg-white/20 hover:scale-105">
                         <i class="fa-solid fa-table-cells"></i>
                         <span>Jadual Matriks</span>
                     </button>
@@ -82,12 +89,12 @@
     <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 overflow-y-auto">
 
         <!-- ================= TAB 1: ANALYTICS (FRONT PAGE) ================= -->
-        <section id="tab-analytics" class="tab-content space-y-6">
+        <section id="tab-analytics" class="tab-content space-y-6 transition-all duration-300">
             <!-- Hero Banner -->
             <div class="bg-tasmik-hero rounded-3xl p-6 sm:p-10 text-white shadow-xl relative overflow-hidden flex flex-col justify-between">
                 <div class="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-emerald-950/85 to-indigo-950/90 z-0"></div>
                 <div class="relative z-10 space-y-3 max-w-2xl">
-                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/30 text-emerald-200 border border-emerald-400/40 backdrop-blur-sm">
+                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/30 text-emerald-200 border border-emerald-400/40 backdrop-blur-sm animate-pulse">
                         <i class="fa-solid fa-award mr-1"></i> Dashboard Pemantauan Al-Quran & Iqra' Firebase
                     </span>
                     <h2 class="text-3xl sm:text-4xl font-black tracking-tight">Analisis Pencapaian Tasmik Semasa</h2>
@@ -97,65 +104,65 @@
                 </div>
             </div>
 
-            <!-- 3 Main Analytics Circles Container -->
+            <!-- 3 Main Analytics Circles Container with Enhanced Animation -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- Circle 1: Iqra -->
-                <div class="bg-white rounded-3xl p-6 shadow-md border border-slate-100 flex flex-col items-center text-center justify-between">
+                <div class="bg-white rounded-3xl p-6 shadow-md border border-slate-100 flex flex-col items-center text-center justify-between transition-transform duration-300 hover:scale-[1.02] hover:shadow-xl">
                     <div>
-                        <div class="w-24 h-24 rounded-full bg-amber-500 text-white font-black flex flex-col items-center justify-center text-2xl shadow-lg mx-auto mb-4 border-4 border-amber-100">
-                            <span id="stat-main-iqra">0</span>
-                            <span class="text-[10px] font-normal opacity-90">Murid</span>
+                        <div class="w-28 h-28 rounded-full bg-gradient-to-tr from-amber-600 to-amber-400 text-white font-black flex flex-col items-center justify-center text-2xl shadow-xl mx-auto mb-4 border-4 border-amber-100 animate-float">
+                            <span id="stat-main-iqra" class="transition-all duration-500 transform scale-110">0</span>
+                            <span class="text-[10px] font-normal opacity-90 uppercase tracking-widest">Murid</span>
                         </div>
                         <h3 class="font-bold text-slate-800 text-lg">Kumpulan Iqra' (1 - 6)</h3>
                         <p class="text-xs text-slate-500 mt-1">Murid yang sedang menguasai asas pembacaan Iqra'.</p>
                     </div>
-                    <button onclick="toggleDrilldown('iqra')" class="mt-6 w-full py-2 bg-amber-50 hover:bg-amber-100 text-amber-700 text-xs font-bold rounded-xl transition border border-amber-200 flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-circle-chevron-down" id="icon-drill-iqra"></i>
+                    <button onclick="toggleDrilldown('iqra')" class="mt-6 w-full py-2 bg-amber-50 hover:bg-amber-100 text-amber-700 text-xs font-bold rounded-xl transition-all duration-200 border border-amber-200 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-circle-chevron-down transition-transform duration-300" id="icon-drill-iqra"></i>
                         <span>Lihat Pecahan Terperinci</span>
                     </button>
                 </div>
 
                 <!-- Circle 2: Juzuk -->
-                <div class="bg-white rounded-3xl p-6 shadow-md border border-slate-100 flex flex-col items-center text-center justify-between">
+                <div class="bg-white rounded-3xl p-6 shadow-md border border-slate-100 flex flex-col items-center text-center justify-between transition-transform duration-300 hover:scale-[1.02] hover:shadow-xl">
                     <div>
-                        <div class="w-24 h-24 rounded-full bg-cyan-600 text-white font-black flex flex-col items-center justify-center text-2xl shadow-lg mx-auto mb-4 border-4 border-cyan-100">
-                            <span id="stat-main-juzuk">0</span>
-                            <span class="text-[10px] font-normal opacity-90">Murid</span>
+                        <div class="w-28 h-28 rounded-full bg-gradient-to-tr from-cyan-700 to-cyan-400 text-white font-black flex flex-col items-center justify-center text-2xl shadow-xl mx-auto mb-4 border-4 border-cyan-100 animate-float" style="animation-delay: 0.5s;">
+                            <span id="stat-main-juzuk" class="transition-all duration-500 transform scale-110">0</span>
+                            <span class="text-[10px] font-normal opacity-90 uppercase tracking-widest">Murid</span>
                         </div>
                         <h3 class="font-bold text-slate-800 text-lg">Kumpulan Juzuk (1 - 30)</h3>
                         <p class="text-xs text-slate-500 mt-1">Murid yang membaca Al-Quran bertadarus / bertasmik.</p>
                     </div>
-                    <button onclick="toggleDrilldown('juzuk')" class="mt-6 w-full py-2 bg-cyan-50 hover:bg-cyan-100 text-cyan-700 text-xs font-bold rounded-xl transition border border-cyan-200 flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-circle-chevron-down" id="icon-drill-juzuk"></i>
+                    <button onclick="toggleDrilldown('juzuk')" class="mt-6 w-full py-2 bg-cyan-50 hover:bg-cyan-100 text-cyan-700 text-xs font-bold rounded-xl transition-all duration-200 border border-cyan-200 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-circle-chevron-down transition-transform duration-300" id="icon-drill-juzuk"></i>
                         <span>Lihat Pecahan Terperinci</span>
                     </button>
                 </div>
 
                 <!-- Circle 3: Khatam -->
-                <div class="bg-white rounded-3xl p-6 shadow-md border border-slate-100 flex flex-col items-center text-center justify-between">
+                <div class="bg-white rounded-3xl p-6 shadow-md border border-slate-100 flex flex-col items-center text-center justify-between transition-transform duration-300 hover:scale-[1.02] hover:shadow-xl">
                     <div>
-                        <div class="w-24 h-24 rounded-full bg-pink-600 text-white font-black flex flex-col items-center justify-center text-2xl shadow-lg mx-auto mb-4 border-4 border-pink-100">
-                            <span id="stat-main-khatam">0</span>
-                            <span class="text-[10px] font-normal opacity-90">Murid</span>
+                        <div class="w-28 h-28 rounded-full bg-gradient-to-tr from-pink-600 to-rose-400 text-white font-black flex flex-col items-center justify-center text-2xl shadow-xl mx-auto mb-4 border-4 border-pink-100 animate-float" style="animation-delay: 1s;">
+                            <span id="stat-main-khatam" class="transition-all duration-500 transform scale-110">0</span>
+                            <span class="text-[10px] font-normal opacity-90 uppercase tracking-widest">Murid</span>
                         </div>
                         <h3 class="font-bold text-slate-800 text-lg">Khatam Al-Quran</h3>
                         <p class="text-xs text-slate-500 mt-1">Murid yang telah menamatkan bacaan 30 Juzuk.</p>
                     </div>
-                    <div class="mt-6 py-2 text-xs font-bold text-pink-600 bg-pink-50 w-full rounded-xl border border-pink-100">
+                    <div class="mt-6 py-2 text-xs font-bold text-pink-600 bg-pink-50 w-full rounded-xl border border-pink-100 animate-pulse">
                         Status Pencapaian Penuh
                     </div>
                 </div>
             </div>
 
             <!-- Drilldown Containers -->
-            <div id="drilldown-iqra-container" class="hidden bg-white rounded-3xl p-6 shadow-md border border-amber-200 space-y-4">
+            <div id="drilldown-iqra-container" class="hidden bg-white rounded-3xl p-6 shadow-md border border-amber-200 space-y-4 transition-all duration-300">
                 <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2">
                     <i class="fa-solid fa-chart-bar text-amber-600"></i> Pecahan Mengikut Tahap Iqra' (1 - 6)
                 </h4>
                 <div id="iqra-drill-grid" class="grid grid-cols-2 sm:grid-cols-6 gap-3"></div>
             </div>
 
-            <div id="drilldown-juzuk-container" class="hidden bg-white rounded-3xl p-6 shadow-md border border-cyan-200 space-y-4">
+            <div id="drilldown-juzuk-container" class="hidden bg-white rounded-3xl p-6 shadow-md border border-cyan-200 space-y-4 transition-all duration-300">
                 <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2">
                     <i class="fa-solid fa-chart-bar text-cyan-600"></i> Pecahan Mengikut Tahap Juzuk (1 - 30)
                 </h4>
@@ -163,153 +170,135 @@
             </div>
         </section>
 
-        <!-- ================= TAB 2: DATA MURID ================= -->
-        <section id="tab-students" class="tab-content hidden space-y-6">
-            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-md border border-slate-100">
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+        <!-- ================= TAB 2: DATA MURID (DUA PANEL BERBEZA) ================= -->
+        <section id="tab-students" class="tab-content hidden space-y-6 transition-all duration-300">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                
+                <!-- PANEL 1: MASUKKAN DATA MURID (Kiri - 5 Kolum) -->
+                <div class="lg:col-span-5 bg-white rounded-3xl p-6 shadow-md border border-slate-100 flex flex-col justify-between space-y-4">
                     <div>
-                        <h2 class="text-xl font-bold text-slate-800">Pengurusan Data Murid Tasmik</h2>
-                        <p class="text-sm text-slate-500">Pendaftaran murid secara satu persatu (Single) atau pukal (Bulk) diselaraskan langsung ke pangkalan data.</p>
-                    </div>
-                    <!-- Filter Tahun & Kelas -->
-                    <div class="flex flex-wrap gap-2 w-full sm:w-auto">
-                        <select id="filter-tahun" onchange="renderStudentsTable()" class="px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500">
-                            <option value="">Semua Tahun</option>
-                            <option value="Tahun 1">Tahun 1</option>
-                            <option value="Tahun 2">Tahun 2</option>
-                            <option value="Tahun 3">Tahun 3</option>
-                            <option value="Tahun 4">Tahun 4</option>
-                            <option value="Tahun 5">Tahun 5</option>
-                            <option value="Tahun 6">Tahun 6</option>
-                        </select>
-                        <select id="filter-kelas-input" onchange="renderStudentsTable()" class="px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500">
-                            <option value="">Semua Kelas</option>
-                            <option value="Daisy">Daisy</option>
-                            <option value="Iris">Iris</option>
-                            <option value="Lily">Lily</option>
-                            <option value="Orchid">Orchid</option>
-                            <option value="Tulip">Tulip</option>
-                            <option value="Jasmine">Jasmine</option>
-                        </select>
-                    </div>
-                </div>
+                        <div class="flex items-center justify-between mb-4 pb-2 border-b border-slate-100">
+                            <h2 class="text-base font-bold text-slate-800 flex items-center gap-2">
+                                <i class="fa-solid fa-user-plus text-emerald-600"></i> Masukkan Data Murid
+                            </h2>
+                            <div class="flex gap-1 bg-slate-100 p-1 rounded-xl">
+                                <button type="button" onclick="switchInputMode('single')" id="mode-single-btn" class="px-3 py-1 rounded-lg text-[11px] font-bold transition bg-white text-emerald-800 shadow-sm">Single</button>
+                                <button type="button" onclick="switchInputMode('bulk')" id="mode-bulk-btn" class="px-3 py-1 rounded-lg text-[11px] font-bold transition text-slate-600 hover:text-slate-800">Bulk</button>
+                            </div>
+                        </div>
 
-                <!-- Input Mode Switcher -->
-                <div class="flex gap-2 mb-4 bg-slate-100 p-1.5 rounded-2xl w-fit">
-                    <button type="button" onclick="switchInputMode('single')" id="mode-single-btn" class="px-4 py-2 rounded-xl text-xs font-bold transition bg-white text-emerald-800 shadow-sm">
-                        <i class="fa-solid fa-user-plus mr-1"></i> Input Seorangan (Single)
-                    </button>
-                    <button type="button" onclick="switchInputMode('bulk')" id="mode-bulk-btn" class="px-4 py-2 rounded-xl text-xs font-bold transition text-slate-600 hover:text-slate-800">
-                        <i class="fa-solid fa-users-rectangle mr-1"></i> Input Pukal (Bulk)
-                    </button>
-                </div>
+                        <!-- Form Single Student -->
+                        <form id="form-single-student" onsubmit="addSingleStudent(event)" class="space-y-3">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1">Nama Penuh Murid</label>
+                                <input type="text" id="single-name" required placeholder="Cth: Muhammad Adam" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1">Tahun</label>
+                                <select id="single-year" required class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                                    <option value="Tahun 1">Tahun 1</option>
+                                    <option value="Tahun 2">Tahun 2</option>
+                                    <option value="Tahun 3">Tahun 3</option>
+                                    <option value="Tahun 4">Tahun 4</option>
+                                    <option value="Tahun 5">Tahun 5</option>
+                                    <option value="Tahun 6">Tahun 6</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1">Nama Kelas</label>
+                                <select id="single-class" required class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                                    <option value="Daisy">Daisy</option>
+                                    <option value="Iris">Iris</option>
+                                    <option value="Lily">Lily</option>
+                                    <option value="Orchid">Orchid</option>
+                                    <option value="Tulip">Tulip</option>
+                                    <option value="Jasmine">Jasmine</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="w-full py-2.5 px-4 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-xl shadow transition duration-200 flex items-center justify-center space-x-2">
+                                <i class="fa-solid fa-plus"></i>
+                                <span>Daftar Murid</span>
+                            </button>
+                        </form>
 
-                <!-- Form Single Student -->
-                <form id="form-single-student" onsubmit="addSingleStudent(event)" class="bg-slate-50 p-4 sm:p-6 rounded-2xl border border-slate-200 mb-6 grid grid-cols-1 sm:grid-cols-4 gap-4 items-end">
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-600 mb-1">Nama Penuh Murid</label>
-                        <input type="text" id="single-name" required placeholder="Cth: Muhammad Adam" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                        <!-- Form Bulk Students -->
+                        <form id="form-bulk-students" onsubmit="addBulkStudents(event)" class="space-y-3 hidden">
+                            <div class="grid grid-cols-2 gap-2">
+                                <div>
+                                    <label class="block text-[11px] font-semibold text-slate-600 mb-1">Tahun Pukal</label>
+                                    <select id="bulk-year" class="w-full px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                                        <option value="Tahun 1">Tahun 1</option><option value="Tahun 2">Tahun 2</option><option value="Tahun 3">Tahun 3</option><option value="Tahun 4">Tahun 4</option><option value="Tahun 5">Tahun 5</option><option value="Tahun 6">Tahun 6</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-[11px] font-semibold text-slate-600 mb-1">Kelas Pukal</label>
+                                    <select id="bulk-class" class="w-full px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                                        <option value="Daisy">Daisy</option><option value="Iris">Iris</option><option value="Lily">Lily</option><option value="Orchid">Orchid</option><option value="Tulip">Tulip</option><option value="Jasmine">Jasmine</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1">Senarai Nama (Satu nama satu baris)</label>
+                                <textarea id="bulk-names-textarea" rows="4" placeholder="Muhammad Adam&#10;Nur Aina Mardhiah" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500"></textarea>
+                            </div>
+                            <button type="submit" class="w-full py-2.5 px-4 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold rounded-xl shadow transition duration-200 flex items-center justify-center space-x-2">
+                                <i class="fa-solid fa-file-arrow-down"></i>
+                                <span>Import Senarai Murid</span>
+                            </button>
+                        </form>
                     </div>
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-600 mb-1">Tahun</label>
-                        <select id="single-year" required class="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
-                            <option value="Tahun 1">Tahun 1</option>
-                            <option value="Tahun 2">Tahun 2</option>
-                            <option value="Tahun 3">Tahun 3</option>
-                            <option value="Tahun 4">Tahun 4</option>
-                            <option value="Tahun 5">Tahun 5</option>
-                            <option value="Tahun 6">Tahun 6</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-600 mb-1">Nama Kelas</label>
-                        <select id="single-class" required class="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
-                            <option value="Daisy">Daisy</option>
-                            <option value="Iris">Iris</option>
-                            <option value="Lily">Lily</option>
-                            <option value="Orchid">Orchid</option>
-                            <option value="Tulip">Tulip</option>
-                            <option value="Jasmine">Jasmine</option>
-                        </select>
-                    </div>
-                    <div>
-                        <button type="submit" class="w-full py-2 px-4 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-xl shadow transition duration-200 flex items-center justify-center space-x-2">
-                            <i class="fa-solid fa-plus"></i>
-                            <span>Daftar Murid</span>
+
+                    <!-- Reset Utilities -->
+                    <div class="pt-4 border-t border-slate-100 flex gap-2">
+                        <button onclick="resetAllData()" class="w-full py-2 bg-rose-50 hover:bg-rose-100 text-rose-700 font-semibold text-xs rounded-xl border border-rose-200 transition">
+                            <i class="fa-solid fa-trash-arrow-up mr-1"></i> Padam Semua Data Murid
                         </button>
                     </div>
-                </form>
+                </div>
 
-                <!-- Form Bulk Students -->
-                <form id="form-bulk-students" onsubmit="addBulkStudents(event)" class="bg-slate-50 p-4 sm:p-6 rounded-2xl border border-slate-200 mb-6 hidden space-y-4">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-600 mb-1">Tahun Untuk Pukal</label>
-                            <select id="bulk-year" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
-                                <option value="Tahun 1">Tahun 1</option>
-                                <option value="Tahun 2">Tahun 2</option>
-                                <option value="Tahun 3">Tahun 3</option>
-                                <option value="Tahun 4">Tahun 4</option>
-                                <option value="Tahun 5">Tahun 5</option>
-                                <option value="Tahun 6">Tahun 6</option>
+                <!-- PANEL 2: LIHAT DATA MURID (Kanan - 7 Kolum) -->
+                <div class="lg:col-span-7 bg-white rounded-3xl p-6 shadow-md border border-slate-100 flex flex-col space-y-4">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 pb-2 border-b border-slate-100">
+                        <h2 class="text-base font-bold text-slate-800 flex items-center gap-2">
+                            <i class="fa-solid fa-users-rectangle text-teal-600"></i> Lihat Data Murid
+                        </h2>
+                        <!-- Filter Tahun & Kelas -->
+                        <div class="flex gap-2 w-full sm:w-auto">
+                            <select id="filter-tahun" onchange="renderStudentsTable()" class="px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                                <option value="">Semua Tahun</option>
+                                <option value="Tahun 1">Tahun 1</option><option value="Tahun 2">Tahun 2</option><option value="Tahun 3">Tahun 3</option><option value="Tahun 4">Tahun 4</option><option value="Tahun 5">Tahun 5</option><option value="Tahun 6">Tahun 6</option>
                             </select>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-600 mb-1">Nama Kelas Pukal</label>
-                            <select id="bulk-class" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
-                                <option value="Daisy">Daisy</option>
-                                <option value="Iris">Iris</option>
-                                <option value="Lily">Lily</option>
-                                <option value="Orchid">Orchid</option>
-                                <option value="Tulip">Tulip</option>
-                                <option value="Jasmine">Jasmine</option>
+                            <select id="filter-kelas-input" onchange="renderStudentsTable()" class="px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                                <option value="">Semua Kelas</option>
+                                <option value="Daisy">Daisy</option><option value="Iris">Iris</option><option value="Lily">Lily</option><option value="Orchid">Orchid</option><option value="Tulip">Tulip</option><option value="Jasmine">Jasmine</option>
                             </select>
                         </div>
                     </div>
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-600 mb-1">Senarai Nama Murid (Satu nama setiap baris)</label>
-                        <textarea id="bulk-names-textarea" rows="4" placeholder="Muhammad Adam&#10;Nur Aina Mardhiah&#10;Ahmad Ziqri" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"></textarea>
-                    </div>
-                    <div class="flex justify-end">
-                        <button type="submit" class="py-2.5 px-6 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-xl shadow transition duration-200 flex items-center space-x-2">
-                            <i class="fa-solid fa-file-arrow-down"></i>
-                            <span>Import Senarai Murid</span>
-                        </button>
-                    </div>
-                </form>
 
-                <!-- Senarai Murid Table -->
-                <div class="overflow-x-auto rounded-2xl border border-slate-200">
-                    <table class="w-full text-left border-collapse">
-                        <thead>
-                            <tr class="bg-slate-100 text-slate-600 text-xs font-semibold uppercase tracking-wider">
-                                <th class="p-3 sm:p-4">Bil</th>
-                                <th class="p-3 sm:p-4">Nama Murid</th>
-                                <th class="p-3 sm:p-4">Tahun</th>
-                                <th class="p-3 sm:p-4">Kelas</th>
-                                <th class="p-3 sm:p-4 text-center">Tindakan</th>
-                            </tr>
-                        </thead>
-                        <tbody id="students-table-body" class="divide-y divide-slate-200 text-sm">
-                            <!-- Populated dynamically -->
-                        </tbody>
-                    </table>
+                    <!-- Senarai Murid Table -->
+                    <div class="overflow-x-auto rounded-2xl border border-slate-200 max-h-[400px] overflow-y-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead class="sticky top-0 bg-slate-100 z-10">
+                                <tr class="text-slate-600 text-xs font-semibold uppercase tracking-wider">
+                                    <th class="p-3">Bil</th>
+                                    <th class="p-3">Nama Murid</th>
+                                    <th class="p-3">Tahun</th>
+                                    <th class="p-3">Kelas</th>
+                                    <th class="p-3 text-center">Tindakan</th>
+                                </tr>
+                            </thead>
+                            <tbody id="students-table-body" class="divide-y divide-slate-200 text-sm">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
-                <!-- Utilities -->
-                <div class="mt-6 flex flex-wrap gap-3 justify-between items-center pt-4 border-t border-slate-100">
-                    <button onclick="loadSampleData()" class="px-4 py-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-semibold text-xs rounded-xl border border-indigo-200 transition">
-                        <i class="fa-solid fa-database mr-1"></i> Muat Data Contoh (Demo)
-                    </button>
-                    <button onclick="resetAllData()" class="px-4 py-2 bg-rose-50 hover:bg-rose-100 text-rose-700 font-semibold text-xs rounded-xl border border-rose-200 transition">
-                        <i class="fa-solid fa-trash-arrow-up mr-1"></i> Padam Semua Data
-                    </button>
-                </div>
             </div>
         </section>
 
         <!-- ================= TAB 3: REKOD TASMIK BULANAN ================= -->
-        <section id="tab-records" class="tab-content hidden space-y-6">
+        <section id="tab-records" class="tab-content hidden space-y-6 transition-all duration-300">
             <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-md border border-slate-100">
                 <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mb-6">
                     <div>
@@ -321,12 +310,7 @@
                         <div>
                             <label class="block text-[11px] font-bold text-slate-600 mb-1">Tahun:</label>
                             <select id="select-level-year-records" onchange="loadClassRecords()" class="px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500">
-                                <option value="Tahun 1">Tahun 1</option>
-                                <option value="Tahun 2">Tahun 2</option>
-                                <option value="Tahun 3" selected>Tahun 3</option>
-                                <option value="Tahun 4">Tahun 4</option>
-                                <option value="Tahun 5">Tahun 5</option>
-                                <option value="Tahun 6">Tahun 6</option>
+                                <option value="Tahun 1">Tahun 1</option><option value="Tahun 2">Tahun 2</option><option value="Tahun 3" selected>Tahun 3</option><option value="Tahun 4">Tahun 4</option><option value="Tahun 5">Tahun 5</option><option value="Tahun 6">Tahun 6</option>
                             </select>
                         </div>
                         <div>
@@ -338,49 +322,50 @@
                         <div>
                             <label class="block text-[11px] font-bold text-slate-600 mb-1">Bulan:</label>
                             <select id="select-month-records" onchange="loadClassRecords()" class="px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500">
-                                <option value="Januari">Januari</option>
-                                <option value="Februari">Februari</option>
-                                <option value="Mac">Mac</option>
-                                <option value="April">April</option>
-                                <option value="Mei">Mei</option>
-                                <option value="Jun">Jun</option>
-                                <option value="Julai">Julai</option>
-                                <option value="Ogos">Ogos</option>
-                                <option value="September">September</option>
-                                <option value="Oktober">Oktober</option>
-                                <option value="November">November</option>
-                                <option value="Disember">Disember</option>
+                                <option value="Januari">Januari</option><option value="Februari">Februari</option><option value="Mac">Mac</option><option value="April">April</option><option value="Mei">Mei</option><option value="Jun">Jun</option><option value="Julai">Julai</option><option value="Ogos">Ogos</option><option value="September">September</option><option value="Oktober">Oktober</option><option value="November">November</option><option value="Disember">Disember</option>
                             </select>
                         </div>
                         <div>
                             <label class="block text-[11px] font-bold text-slate-600 mb-1">Kelas:</label>
                             <select id="select-class-records" onchange="loadClassRecords()" class="px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500">
-                                <option value="Daisy">Daisy</option>
-                                <option value="Iris">Iris</option>
-                                <option value="Lily">Lily</option>
-                                <option value="Orchid">Orchid</option>
-                                <option value="Tulip">Tulip</option>
-                                <option value="Jasmine">Jasmine</option>
+                                <option value="Daisy">Daisy</option><option value="Iris">Iris</option><option value="Lily">Lily</option><option value="Orchid">Orchid</option><option value="Tulip">Tulip</option><option value="Jasmine">Jasmine</option>
                             </select>
                         </div>
                     </div>
                 </div>
 
-                <!-- Rekod Tasmik Table -->
-                <div class="overflow-x-auto rounded-2xl border border-slate-200">
+                <!-- Butang Tindakan Pemadaman & Simpan Rekod (Diselaraskan Sebaris) -->
+                <div class="flex flex-wrap gap-2 mb-4 p-3 bg-slate-50 rounded-2xl border border-slate-200 justify-between items-center">
+                    <div class="text-xs text-slate-500 font-medium">Urus & Simpan Data Rekod Tasmik:</div>
+                    <div class="flex flex-wrap items-center gap-2">
+                        <button onclick="saveAllRecords()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs rounded-xl shadow transition duration-200 flex items-center space-x-1.5 hover:scale-105">
+                            <i class="fa-solid fa-floppy-disk"></i>
+                            <span>Simpan Rekod Bulanan Kelas</span>
+                        </button>
+                        <button onclick="clearCurrentClassRecords()" class="px-3 py-2 bg-rose-50 hover:bg-rose-100 text-rose-700 text-xs font-semibold rounded-xl border border-rose-200 transition">
+                            <i class="fa-solid fa-eraser mr-1"></i> Padam Kelas Ini
+                        </button>
+                        <button onclick="clearAllRecordsDatabase()" class="px-3 py-2 bg-rose-600 hover:bg-rose-700 text-white text-xs font-semibold rounded-xl shadow transition">
+                            <i class="fa-solid fa-trash-can mr-1"></i> Padam Semua Rekod
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Rekod Tasmik Table (Penuh & Boleh Skrol ke Bawah) -->
+                <div class="overflow-x-auto max-h-[600px] overflow-y-auto rounded-2xl border border-slate-200 shadow-inner">
                     <table class="w-full text-left border-collapse min-w-[1350px]">
-                        <thead>
-                            <tr class="bg-slate-100 text-slate-700 text-xs font-bold uppercase tracking-wider">
-                                <th class="p-3 text-center w-12">BIL</th>
-                                <th class="p-3 w-44">NAMA</th>
-                                <th class="p-3 w-48">REKOD LEPAS</th>
-                                <th class="p-3 w-28 text-center">MINGGU 1</th>
-                                <th class="p-3 w-28 text-center">MINGGU 2</th>
-                                <th class="p-3 w-28 text-center">MINGGU 3</th>
-                                <th class="p-3 w-28 text-center">MINGGU 4</th>
-                                <th class="p-3 w-56">REKOD BACAAN SEMASA</th>
-                                <th class="p-3 w-48">SASARAN MURID</th>
-                                <th class="p-3 w-36">CATATAN</th>
+                        <thead class="sticky top-0 bg-slate-100 z-20 shadow-sm">
+                            <tr class="text-slate-700 text-xs font-bold uppercase tracking-wider">
+                                <th class="p-3 text-center w-12 bg-slate-100">BIL</th>
+                                <th class="p-3 w-44 bg-slate-100">NAMA</th>
+                                <th class="p-3 w-48 bg-slate-100">REKOD LEPAS</th>
+                                <th class="p-3 w-28 text-center bg-slate-100">MINGGU 1</th>
+                                <th class="p-3 w-28 text-center bg-slate-100">MINGGU 2</th>
+                                <th class="p-3 w-28 text-center bg-slate-100">MINGGU 3</th>
+                                <th class="p-3 w-28 text-center bg-slate-100">MINGGU 4</th>
+                                <th class="p-3 w-56 bg-slate-100">REKOD BACAAN SEMASA</th>
+                                <th class="p-3 w-48 bg-slate-100">SASARAN MURID</th>
+                                <th class="p-3 w-36 bg-slate-100">CATATAN / TINDAKAN</th>
                             </tr>
                         </thead>
                         <tbody id="records-table-body" class="divide-y divide-slate-200 text-sm">
@@ -388,33 +373,22 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="mt-4 flex justify-end">
-                    <button onclick="saveAllRecords()" class="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm rounded-xl shadow transition duration-200 flex items-center space-x-2">
-                        <i class="fa-solid fa-floppy-disk"></i>
-                        <span>Simpan Rekod Bulanan Kelas</span>
-                    </button>
-                </div>
             </div>
         </section>
 
         <!-- ================= TAB 4: JADUAL MATRIKS BULANAN ================= -->
-        <section id="tab-matrix" class="tab-content hidden space-y-6">
+        <section id="tab-matrix" class="tab-content hidden space-y-6 transition-all duration-300">
             <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-md border border-slate-100">
                 <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mb-6">
                     <div>
                         <h2 class="text-xl font-bold text-slate-800">Jadual Matriks Rumusan Bulanan</h2>
-                        <p class="text-sm text-slate-500">Paparan rumusan menyeluruh tahap bacaan murid merentasi minggu mengikut tahun, kalendar, bulan dan kelas.</p>
+                        <p class="text-sm text-slate-500">Data hanya dipaparkan selepas anda menyimpan rekod tasmik bagi kelas/bulan tersebut.</p>
                     </div>
                     <div class="flex flex-wrap gap-2 w-full lg:w-auto">
                         <div>
                             <label class="block text-[11px] font-bold text-slate-600 mb-1">Tahun:</label>
                             <select id="select-level-year-matrix" onchange="loadMatrixTable()" class="px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500">
-                                <option value="Tahun 1">Tahun 1</option>
-                                <option value="Tahun 2">Tahun 2</option>
-                                <option value="Tahun 3" selected>Tahun 3</option>
-                                <option value="Tahun 4">Tahun 4</option>
-                                <option value="Tahun 5">Tahun 5</option>
-                                <option value="Tahun 6">Tahun 6</option>
+                                <option value="Tahun 1">Tahun 1</option><option value="Tahun 2">Tahun 2</option><option value="Tahun 3" selected>Tahun 3</option><option value="Tahun 4">Tahun 4</option><option value="Tahun 5">Tahun 5</option><option value="Tahun 6">Tahun 6</option>
                             </select>
                         </div>
                         <div>
@@ -426,47 +400,31 @@
                         <div>
                             <label class="block text-[11px] font-bold text-slate-600 mb-1">Bulan:</label>
                             <select id="select-month-matrix" onchange="loadMatrixTable()" class="px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500">
-                                <option value="Januari">Januari</option>
-                                <option value="Februari">Februari</option>
-                                <option value="Mac">Mac</option>
-                                <option value="April">April</option>
-                                <option value="Mei">Mei</option>
-                                <option value="Jun">Jun</option>
-                                <option value="Julai">Julai</option>
-                                <option value="Ogos">Ogos</option>
-                                <option value="September">September</option>
-                                <option value="Oktober">Oktober</option>
-                                <option value="November">November</option>
-                                <option value="Disember">Disember</option>
+                                <option value="Januari">Januari</option><option value="Februari">Februari</option><option value="Mac">Mac</option><option value="April">April</option><option value="Mei">Mei</option><option value="Jun">Jun</option><option value="Julai">Julai</option><option value="Ogos">Ogos</option><option value="September">September</option><option value="Oktober">Oktober</option><option value="November">November</option><option value="Disember">Disember</option>
                             </select>
                         </div>
                         <div>
                             <label class="block text-[11px] font-bold text-slate-600 mb-1">Kelas:</label>
                             <select id="select-class-matrix" onchange="loadMatrixTable()" class="px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500">
-                                <option value="Daisy">Daisy</option>
-                                <option value="Iris">Iris</option>
-                                <option value="Lily">Lily</option>
-                                <option value="Orchid">Orchid</option>
-                                <option value="Tulip">Tulip</option>
-                                <option value="Jasmine">Jasmine</option>
+                                <option value="Daisy">Daisy</option><option value="Iris">Iris</option><option value="Lily">Lily</option><option value="Orchid">Orchid</option><option value="Tulip">Tulip</option><option value="Jasmine">Jasmine</option>
                             </select>
                         </div>
                     </div>
                 </div>
 
-                <!-- Matrix Table -->
-                <div class="overflow-x-auto rounded-2xl border border-slate-200">
+                <!-- Matrix Table (Penuh & Boleh Skrol ke Bawah) -->
+                <div class="overflow-x-auto max-h-[600px] overflow-y-auto rounded-2xl border border-slate-200 shadow-inner">
                     <table class="w-full text-left border-collapse min-w-[850px]">
-                        <thead>
-                            <tr class="bg-slate-100 text-slate-700 text-xs font-bold uppercase tracking-wider">
-                                <th class="p-3 text-center w-12">BIL</th>
-                                <th class="p-3 w-52">NAMA MURID</th>
-                                <th class="p-3 w-32 text-center">REKOD LEPAS</th>
-                                <th class="p-3 w-28 text-center">MINGGU 1</th>
-                                <th class="p-3 w-28 text-center">MINGGU 2</th>
-                                <th class="p-3 w-28 text-center">MINGGU 3</th>
-                                <th class="p-3 w-28 text-center">MINGGU 4</th>
-                                <th class="p-3 w-40 text-center">STATUS BULAN INI</th>
+                        <thead class="sticky top-0 bg-slate-100 z-20 shadow-sm">
+                            <tr class="text-slate-700 text-xs font-bold uppercase tracking-wider">
+                                <th class="p-3 text-center w-12 bg-slate-100">BIL</th>
+                                <th class="p-3 w-52 bg-slate-100">NAMA MURID</th>
+                                <th class="p-3 w-32 text-center bg-slate-100">REKOD LEPAS</th>
+                                <th class="p-3 w-28 text-center bg-slate-100">MINGGU 1</th>
+                                <th class="p-3 w-28 text-center bg-slate-100">MINGGU 2</th>
+                                <th class="p-3 w-28 text-center bg-slate-100">MINGGU 3</th>
+                                <th class="p-3 w-28 text-center bg-slate-100">MINGGU 4</th>
+                                <th class="p-3 w-40 text-center bg-slate-100">STATUS BULAN INI</th>
                             </tr>
                         </thead>
                         <tbody id="matrix-table-body" class="divide-y divide-slate-200 text-sm">
@@ -527,7 +485,7 @@
 
     <!-- Footer -->
     <footer class="bg-white border-t border-slate-200 py-4 text-center text-xs text-slate-500">
-        <p>&copy; <span id="footer-year">2026</span> Sistem Pengurusan Tasmik Al-Quran Sekolah • Direka Khas Untuk Guru J-QAF & Pendidikan Islam.</p>
+        <p>&copy; <span id="footer-year">2026</span> Sistem Pengurusan Tasmik Al-Quran Sekolah • SK Bukit Kuang.</p>
     </footer>
 
     <!-- Firebase Realtime Database & Application Logic -->
@@ -553,12 +511,6 @@
 
         window.students = [];
         window.monthlyRecords = {};
-
-        const sampleStudents = [
-            { id: 101, name: "Muhammad Adam bin Zulkifli", year: "Tahun 3", className: "Daisy", pastRecord: "1IQ1", pastMs: "1" },
-            { id: 102, name: "Nur Aina Mardhiah binti Azman", year: "Tahun 3", className: "Daisy", pastRecord: "1IQ1", pastMs: "1" },
-            { id: 103, name: "Ahmad Ziqri bin Hairul", year: "Tahun 3", className: "Daisy", pastRecord: "1IQ1", pastMs: "1" }
-        ];
 
         window.juzukPageRanges = {
             "1IQ1": { type: "iqra", label: "Iqra' 1", min: 1, max: 30 },
@@ -622,7 +574,6 @@
             if (matCal) matCal.innerHTML = options;
         }
 
-        // Initialize Realtime Database Listeners
         function initRealtimeDatabase() {
             const syncText = document.getElementById('sync-text');
             const syncDot = document.getElementById('sync-dot');
@@ -633,7 +584,6 @@
                 if (data !== null && data !== undefined) {
                     window.students = Array.isArray(data) ? data : Object.values(data);
                 } else {
-                    // Pastikan ia kosong sekiranya memang tiada data di Firebase / telah dipadam
                     window.students = [];
                 }
                 syncDot.className = "w-2.5 h-2.5 rounded-full bg-emerald-400";
@@ -686,15 +636,14 @@
             }
         }
 
-        // Tab Switching
         window.switchTab = function(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
             document.getElementById('tab-' + tabId).classList.remove('hidden');
 
             document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.className = "tab-btn px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-200 flex items-center space-x-2 text-white hover:bg-white/20";
+                btn.className = "tab-btn px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-300 flex items-center space-x-2 text-white hover:bg-white/20 hover:scale-105";
             });
-            document.getElementById('nav-' + tabId).className = "tab-btn px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-200 flex items-center space-x-2 bg-white text-emerald-900 shadow-md";
+            document.getElementById('nav-' + tabId).className = "tab-btn px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-300 flex items-center space-x-2 bg-white text-emerald-900 shadow-md hover:scale-105";
 
             if (tabId === 'analytics') renderAnalytics();
             if (tabId === 'students') renderStudentsTable();
@@ -730,7 +679,6 @@
             setTimeout(() => { modal.classList.add('hidden'); }, 300);
         }
 
-        // ---------------- TAB 1: ANALYTICS 3 MAIN CIRCLES + DRILLDOWN ----------------
         window.renderAnalytics = function() {
             let countIqra = 0, countJuzuk = 0, countKhatam = 0;
             const iqraCounts = { "1IQ1":0, "1IQ2":0, "1IQ3":0, "1IQ4":0, "1IQ5":0, "1IQ6":0 };
@@ -757,27 +705,25 @@
             document.getElementById('stat-main-juzuk').innerText = countJuzuk;
             document.getElementById('stat-main-khatam').innerText = countKhatam;
 
-            // Populate Drilldown Iqra grid
             const iqraGrid = document.getElementById('iqra-drill-grid');
             iqraGrid.innerHTML = '';
             for(let key in iqraCounts) {
                 const val = iqraCounts[key];
                 iqraGrid.innerHTML += `
-                    <div class="bg-amber-50 border border-amber-200 rounded-2xl p-3 flex flex-col items-center justify-center text-center">
+                    <div class="bg-amber-50 border border-amber-200 rounded-2xl p-3 flex flex-col items-center justify-center text-center transition hover:scale-105">
                         <span class="text-xl font-extrabold text-amber-700">${val}</span>
                         <span class="text-xs font-bold text-slate-700 mt-1">${key.replace('1', 'Iqra\' ')}</span>
                     </div>
                 `;
             }
 
-            // Populate Drilldown Juzuk grid
             const juzukGrid = document.getElementById('juzuk-drill-grid');
             juzukGrid.innerHTML = '';
             for(let i=1; i<=30; i++) {
                 const key = `JUZUK ${i}`;
                 const val = juzukCounts[key];
                 juzukGrid.innerHTML += `
-                    <div class="bg-cyan-50 border border-cyan-200 rounded-2xl p-2.5 flex flex-col items-center justify-center text-center">
+                    <div class="bg-cyan-50 border border-cyan-200 rounded-2xl p-2.5 flex flex-col items-center justify-center text-center transition hover:scale-105">
                         <span class="text-lg font-extrabold text-cyan-700">${val}</span>
                         <span class="text-[11px] font-bold text-slate-700">Jz ${i}</span>
                     </div>
@@ -814,7 +760,6 @@
             return s ? (s.pastRecord || "1IQ1") : "1IQ1";
         }
 
-        // ---------------- TAB 2: STUDENTS MANAGEMENT ----------------
         window.switchInputMode = function(mode) {
             const singleBtn = document.getElementById('mode-single-btn');
             const bulkBtn = document.getElementById('mode-bulk-btn');
@@ -822,13 +767,13 @@
             const bulkForm = document.getElementById('form-bulk-students');
 
             if (mode === 'single') {
-                singleBtn.className = "px-4 py-2 rounded-xl text-xs font-bold transition bg-white text-emerald-800 shadow-sm";
-                bulkBtn.className = "px-4 py-2 rounded-xl text-xs font-bold transition text-slate-600 hover:text-slate-800";
+                singleBtn.className = "px-3 py-1 rounded-lg text-[11px] font-bold transition bg-white text-emerald-800 shadow-sm";
+                bulkBtn.className = "px-3 py-1 rounded-lg text-[11px] font-bold transition text-slate-600 hover:text-slate-800";
                 singleForm.classList.remove('hidden');
                 bulkForm.classList.add('hidden');
             } else {
-                bulkBtn.className = "px-4 py-2 rounded-xl text-xs font-bold transition bg-white text-emerald-800 shadow-sm";
-                singleBtn.className = "px-4 py-2 rounded-xl text-xs font-bold transition text-slate-600 hover:text-slate-800";
+                bulkBtn.className = "px-3 py-1 rounded-lg text-[11px] font-bold transition bg-white text-emerald-800 shadow-sm";
+                singleBtn.className = "px-3 py-1 rounded-lg text-[11px] font-bold transition text-slate-600 hover:text-slate-800";
                 bulkForm.classList.remove('hidden');
                 singleForm.classList.add('hidden');
             }
@@ -852,12 +797,12 @@
             filtered.forEach((s, index) => {
                 tbody.innerHTML += `
                     <tr class="hover:bg-slate-50 transition">
-                        <td class="p-3 sm:p-4 font-semibold text-slate-600">${index + 1}</td>
-                        <td class="p-3 sm:p-4 font-medium text-slate-800">${s.name}</td>
-                        <td class="p-3 sm:p-4"><span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-full text-xs font-semibold">${s.year}</span></td>
-                        <td class="p-3 sm:p-4"><span class="px-2.5 py-1 bg-cyan-100 text-cyan-800 rounded-full text-xs font-semibold">${s.className}</span></td>
-                        <td class="p-3 sm:p-4 text-center">
-                            <button onclick="deleteStudent(${s.id})" class="p-2 text-rose-600 hover:bg-rose-50 rounded-xl transition" title="Padam Murid">
+                        <td class="p-3 font-semibold text-slate-600">${index + 1}</td>
+                        <td class="p-3 font-medium text-slate-800">${s.name}</td>
+                        <td class="p-3"><span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded-full text-xs font-semibold">${s.year}</span></td>
+                        <td class="p-3"><span class="px-2 py-0.5 bg-cyan-100 text-cyan-800 rounded-full text-xs font-semibold">${s.className}</span></td>
+                        <td class="p-3 text-center">
+                            <button onclick="deleteStudent(${s.id})" class="p-1.5 text-rose-600 hover:bg-rose-50 rounded-xl transition" title="Padam Murid">
                                 <i class="fa-solid fa-trash-can"></i>
                             </button>
                         </td>
@@ -923,30 +868,16 @@
             showNotification('Dipadam', 'Rekod murid telah dipadam.', false);
         }
 
-        window.loadSampleData = async function() {
-            window.students = sampleStudents;
-            window.monthlyRecords = {};
-            await saveStudentsToFirebase();
-            await saveRecordsToFirebase();
-            renderStudentsTable();
-            showNotification('Demo Dimuatkan', 'Data contoh telah dimasukkan ke Firebase.');
-        }
-
         window.resetAllData = async function() {
             if(confirm("Adakah anda pasti mahu memadam kesemua data murid dan rekod tasmik? Tindakan ini tidak boleh diundurkan.")) {
                 window.students = [];
                 window.monthlyRecords = {};
-                
-                // Padam terus dari pangkalan data Firebase
                 try {
-                    const studentsRef = ref(database, 'tasmik_sekolah/students');
-                    const recordsRef = ref(database, 'tasmik_sekolah/monthlyRecords');
-                    await set(studentsRef, null);
-                    await set(recordsRef, null);
+                    await set(ref(database, 'tasmik_sekolah/students'), null);
+                    await set(ref(database, 'tasmik_sekolah/monthlyRecords'), null);
                 } catch(e) {
                     console.error("Gagal kosongkan Firebase:", e);
                 }
-
                 renderStudentsTable();
                 renderAnalytics();
                 showNotification('Semua Dipadam', 'Semua data pangkalan data telah dikosongkan sepenuhnya.', false);
@@ -1043,11 +974,14 @@
                             <input type="text" onclick="window.openPagePicker(this, '${s.id}', 'target')" readonly class="w-full px-2 py-1 bg-slate-50 border border-slate-200 rounded-lg text-xs font-mono target-ms-input cursor-pointer hover:border-emerald-500 text-center" placeholder="Pilih Muka Surat..." value="${rec.targetMs || ''}">
                         </td>
 
-                        <!-- CATATAN -->
-                        <td class="p-3">
-                            <select class="w-full px-2 py-2 bg-white border border-slate-200 rounded-lg text-xs font-semibold text-slate-700 notes-select">
+                        <!-- CATATAN & DELETE SORANG -->
+                        <td class="p-3 space-y-1 flex flex-col justify-center">
+                            <select class="w-full px-2 py-1 bg-white border border-slate-200 rounded-lg text-xs font-semibold text-slate-700 notes-select">
                                 ${notesOptions}
                             </select>
+                            <button type="button" onclick="deleteSingleRecord('${s.id}')" class="text-[10px] text-rose-600 hover:bg-rose-50 py-1 px-2 rounded border border-rose-200 transition text-center font-bold">
+                                <i class="fa-solid fa-trash mr-1"></i> Padam Rekod Murid Ini
+                            </button>
                         </td>
                     </tr>
                 `;
@@ -1059,6 +993,7 @@
                     row.querySelector('.past-level-select').value = classRecs[s.id].pastRecord;
                     row.querySelector('.current-level-select').value = classRecs[s.id].current;
                     row.querySelector('.target-level-select').value = classRecs[s.id].target;
+                    row.querySelector('.notes-select').value = classRecs[s.id].notes;
                 }
             });
         }
@@ -1205,6 +1140,51 @@
 
             await window.saveRecordsToFirebase();
             showNotification('Berjaya!', `Rekod bulanan ${month} (${calYear}) untuk ${levelYear} Kelas ${className} telah diselaraskan ke Firebase.`);
+            
+            if (!document.getElementById('tab-matrix').classList.contains('hidden')) {
+                loadMatrixTable();
+            }
+        }
+
+        window.deleteSingleRecord = async function(studentId) {
+            const levelYear = document.getElementById('select-level-year-records').value;
+            const calYear = document.getElementById('select-cal-year-records').value;
+            const month = document.getElementById('select-month-records').value;
+            const className = document.getElementById('select-class-records').value;
+            const recordKey = `${levelYear}_${calYear}_${month}_${className}`;
+
+            if(window.monthlyRecords[recordKey] && window.monthlyRecords[recordKey][studentId]) {
+                delete window.monthlyRecords[recordKey][studentId];
+                await window.saveRecordsToFirebase();
+                loadClassRecords();
+                showNotification('Dipadam', 'Rekod murid ini telah dipadam.', false);
+            }
+        }
+
+        window.clearCurrentClassRecords = async function() {
+            const levelYear = document.getElementById('select-level-year-records').value;
+            const calYear = document.getElementById('select-cal-year-records').value;
+            const month = document.getElementById('select-month-records').value;
+            const className = document.getElementById('select-class-records').value;
+            const recordKey = `${levelYear}_${calYear}_${month}_${className}`;
+
+            if(confirm(`Padam semua rekod tasmik untuk ${levelYear} Kelas ${className} (${month} ${calYear})?`)) {
+                if(window.monthlyRecords[recordKey]) {
+                    delete window.monthlyRecords[recordKey];
+                    await window.saveRecordsToFirebase();
+                    loadClassRecords();
+                    showNotification('Kelas Dipadam', 'Semua rekod kelas ini telah dipadam.', false);
+                }
+            }
+        }
+
+        window.clearAllRecordsDatabase = async function() {
+            if(confirm("AMARAN: Padam kesemua rekod tasmik merentasi semua bulan, tahun dan kelas?")) {
+                window.monthlyRecords = {};
+                await window.saveRecordsToFirebase();
+                loadClassRecords();
+                showNotification('Semua Rekod Dipadam', 'Pangkalan data rekod telah dikosongkan.', false);
+            }
         }
 
         // ---------------- TAB 4: JADUAL MATRIKS BULANAN ----------------
@@ -1216,17 +1196,25 @@
             const tbody = document.getElementById('matrix-table-body');
             tbody.innerHTML = '';
 
-            const classStudents = window.students.filter(s => s.year === levelYear && s.className === className);
             const recordKey = `${levelYear}_${calYear}_${month}_${className}`;
-            const classRecs = window.monthlyRecords[recordKey] || {};
+            const classRecs = window.monthlyRecords[recordKey];
 
+            if (!classRecs || Object.keys(classRecs).length === 0) {
+                tbody.innerHTML = `<tr><td colspan="8" class="p-8 text-center text-amber-600 font-semibold bg-amber-50/50">
+                    <i class="fa-solid fa-triangle-exclamation mr-2"></i> Jadual matriks belum disimpan. Sila pergi ke tab 'Rekod Tasmik', masukkan markah dan tekan butang <b>'Simpan Rekod Bulanan Kelas'</b> terlebih dahulu.
+                </td></tr>`;
+                return;
+            }
+
+            const classStudents = window.students.filter(s => s.year === levelYear && s.className === className);
             if(classStudents.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="8" class="p-6 text-center text-slate-400">Tiada data murid untuk matriks ${levelYear} Kelas ${className} pada bulan ${month} ${calYear}.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="8" class="p-6 text-center text-slate-400">Tiada data murid untuk matriks ${levelYear} Kelas ${className}.</td></tr>`;
                 return;
             }
 
             classStudents.forEach((s, idx) => {
-                const rec = classRecs[s.id] || { pastRecord: s.pastRecord || "1IQ1", pastMs: "1", w1: "-", w2: "-", w3: "-", w4: "-", current: s.pastRecord || "1IQ1", currentMs: "" };
+                const rec = classRecs[s.id];
+                if (!rec) return;
                 
                 const pastLabel = window.juzukPageRanges[rec.pastRecord] ? window.juzukPageRanges[rec.pastRecord].label : rec.pastRecord;
                 const displayPast = `${pastLabel}${rec.pastMs ? ' (' + rec.pastMs + ')' : ''}`;
